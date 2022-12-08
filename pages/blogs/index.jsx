@@ -1,8 +1,30 @@
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { facebook, linkedin, pinterest, twitter } from "../../assest";
-import style from './Blog.module.css'
+import style from "./Blog.module.css";
 
+const social = [
+  {
+    name: "facebook",
+    href: "#",
+    icon: "https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png",
+  },
+  {
+    name: "linkedin",
+    href: "#",
+    icon: "https://w7.pngwing.com/pngs/402/997/png-transparent-linkedin-logo-computer-icons-facebook-user-profile-facebook-blue-angle-text.png",
+  },
+  {
+    name: "pinterest",
+    href: "#",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png",
+  },
+  {
+    name: "twitter",
+    href: "#",
+    icon: "https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png",
+  },
+];
 
 const index = () => {
   const [data, setData] = useState(null);
@@ -20,7 +42,39 @@ const index = () => {
   console.log(data);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
+        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 animate-pulse">
+          {[{}, {}, {}, {}, {}, {}].map((blog) => (
+            <div
+              role="status"
+              class="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
+            >
+              <div class="flex justify-center items-center mb-4 h-48 bg-gray-300 rounded ">
+                <svg
+                  class="w-12 h-12 text-gray-200 "
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 640 512"
+                >
+                  <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+                </svg>
+              </div>
+              <div className="flex justify-between gap-10">
+                <div class="h-2 bg-gray-200 rounded-full  w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full w-20  mb-4"></div>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full "></div>
+              <div class="h-2.5 bg-gray-200 rounded-full  w-32 mb-2"></div>
+
+              <span class="sr-only">Loading...</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
   }
 
   if (!data) return <p>No profile Data</p>;
@@ -28,202 +82,59 @@ const index = () => {
   return (
     <section>
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
-        
-        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6">
-          {data.slice(0, 1).map((blog) => (
-            <Link
-              href={`/read-blog/${blog._id}`}
-              className="blog-post-card sm:col-span-1 md:col-span-2 flex flex-col"
-              key={blog?._id}
-            >
-              <div className="blog-post-image">
-                <img src={blog?.img} alt="post 1" className="m-0" />
-              </div>
-              <div className="blog-post-title-section">
-                <div className="blog-post-title ">
-                  <Link href="#" className="">
-                    {blog?.category}
-                  </Link>
-                </div>
-
-                <div className="blog-post-title-social-link">
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={twitter} alt="" />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={facebook} alt="" />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100'
-                      className="social-icon"
-                      src={linkedin}
-                      alt=""
-                      srcSet=""
-                    />
-                  </Link>
-                  <Link href="">
-                    <img width='100' height='100' className="social-icon" src={pinterest} alt="" />
-                  </Link>
-                </div>
-              </div>
-              <Link href={`/read-blog/${blog._id}`} className="card-header">
-                {`${blog?.title?.slice(0, 60).concat("..")}`}
-              </Link>
-              <div>
-                <time
-                  className="blog-published-time"
-                  dateTime="2017-03-27"
-                  title="27 March 2017"
-                >
-                  {blog?.date}
-                </time>
-              </div>
-            </Link>
-          ))}
-          {data.slice(1, 2).map((blog) => (
-            <div className="blog-post-card col-span-1" key={blog?._id}>
-              <div className="blog-post-image">
-                <img width='100' height='100' src={blog?.img} alt="post 1" className="m-0" />
-              </div>
-              <div className="blog-post-title-section">
-                <div className="blog-post-title">
-                  <Link href="#" className="">
-                    {blog?.category}
-                  </Link>
-                </div>
-
-                <div className="blog-post-title-social-link">
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={twitter} alt="" />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={facebook} alt="" />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100'
-                      className="social-icon"
-                      src={linkedin}
-                      alt=""
-                      srcSet=""
-                    />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={pinterest} alt="" />
-                  </Link>
-                </div>
-              </div>
-              <Link href={`/read-blog/${blog._id}`} className="card-header">
-                {`${blog?.title?.slice(0, 40).concat("..")}`}
-              </Link>
-              <div>
-                <time
-                  className="blog-published-time"
-                  dateTime="2017-03-27"
-                  title="27 March 2017"
-                >
-                  {blog?.date}
-                </time>
-              </div>
-            </div>
-          ))}
-          {data.slice(3, data.length).map((blog) => (
+        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
+          {data.map((blog) => (
             <Link
               key={blog?._id}
               href={`/read-blog/${blog._id}`}
-              className="blog-post-card-section col-span-1"
+              className="flex flex-col col-span-1 w-full shadow rounded group first:col-span-2 max-h-[450px] relative"
             >
-              <div className="blog-post-image-section">
-                <img width='100' height='100' className="m-0" src={blog?.img} alt="post 1" />
+              <div className="">
+                <img
+                  className="rounded-t object-cover w-[100%] h-[300px]"
+                  src={blog?.img}
+                  alt="post 1"
+                />
               </div>
-              <div className="blog-post-title-section">
-                <div className="blog-post-title">
-                  <Link href="#" className="">
+              <div className="p-2">
+                <div className="flex justify-between">
+                  <Link href="#" className="text-xs font-normal text-[#555555]">
                     {blog?.category}
                   </Link>
+                  {/* Social Media Link */}
+                  <div className="flex gap-x-2  ">
+                    {social.map((data) => (
+                      <div className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
+                        <img
+                          src={data.icon}
+                          alt={data.name}
+                          className="w-[15px]"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="blog-post-title-social-link">
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={twitter} alt="" />
-                  </Link>
-                  <Link href="facebook">
-                    <img width='100' height='100' className="social-icon" src={facebook} alt="" />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100'
-                      className="social-icon"
-                      src={linkedin}
-                      alt=""
-                      srcSet=""
-                    />
-                  </Link>
-                  <Link href="#">
-                    <img width='100' height='100' className="social-icon" src={pinterest} alt="" />
-                  </Link>
-                </div>
-              </div>
-              <Link href={`/read-blog/${blog._id}`} className="card-header">
-                {`${blog?.title?.slice(0, 28).concat("..")}`}
-              </Link>
-              <div>
-                <time
-                  className="blog-published-time"
-                  dateTime="2017-03-27"
-                  title="27 March 2017"
+                <Link
+                  href={`/read-blog/${blog._id}`}
+                  className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0"
                 >
-                  {blog?.date}
-                </time>
+                  {blog.title}
+                </Link>
+
+                <br />
+                <span className="leading-[1] m-0 p-0">
+                  <time
+                    className="text-xs font-normal text-[#555555]"
+                    dateTime="2017-03-27"
+                    title="27 March 2017"
+                  >
+                    {blog?.date}
+                  </time>
+                </span>
               </div>
             </Link>
           ))}
         </div>
-
-        <nav aria-label="" className="py-8">
-          <ul className="inline-flex items-center -space-x-px">
-            <li>
-              <button
-                onClick={() => setPage(page - 1)}
-                className="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
-              >
-                <span className="sr-only">Previous</span>
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </li>
-           
-
-            <li>
-              <button
-                onClick={() => setPage(page + 1)}
-                className="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-              >
-                <span className="sr-only">Next</span>
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </li>
-          </ul>
-        </nav>
       </section>
     </section>
   );
