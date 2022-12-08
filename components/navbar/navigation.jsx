@@ -1,10 +1,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const navigation = [
-    { name: "Home", href: "/home", current: false },
-    { name: "Blog", href: "/blog", current: false },
+    { name: "Home", href: "/", current: false },
+    { name: "Blog", href: "/blogs", current: false },
     { name: "About", href: "/about", current: false },
     { name: "Contact", href: "/contact", current: false },
   ];
@@ -38,7 +39,7 @@ export default function Navigation() {
                 <div className="hidden sm:ml-6 md:ml-0 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={classNames(
@@ -50,7 +51,7 @@ export default function Navigation() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -64,7 +65,7 @@ export default function Navigation() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
+                  as="Link"
                   href={item.href}
                   className={classNames(
                     item.current
