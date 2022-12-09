@@ -31,9 +31,9 @@ const Contact = () => {
     <>
       <section className="about-section py-4 lg:px-52 bg-white px-2">
         <div>
-          <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded ">
+          <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
             <Image
-              className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-l max-h-[500px] h-full w-full"
+              className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-t-none md:rounded-l max-h-[500px] h-full w-full"
               src={contact}
               alt="Contact me"
             />
@@ -102,13 +102,13 @@ const Contact = () => {
                 rows="6"
                 type="text"
                 name="floating_email"
-                className="block py-2.5 px-0 text-md w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 rounded-b-md  appearance-none border-gray-300 focus:outline-none focus:ring-0 focus:border-[#b70038] peer"
+                className="block py-2.5 px-0 text-md w-full text-md text-[#2e2e2eee] bg-transparent border-0 border-b-2 rounded-b-md  appearance-none border-gray-300 focus:outline-none focus:ring-0 focus:border-[#b70038] peer"
                 placeholder=" "
                 required=""
               />
               <label
                 htmlFor="floating_email"
-                className="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#b70038] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                className="absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#b70038] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Insert <span className="">Letter combination</span> Here
               </label>

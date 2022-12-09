@@ -89,7 +89,7 @@ const index = () => {
             <Link
               key={blog?._id}
               href={`/read-blog/${blog._id}`}
-              className="flex flex-col col-span-1 w-full shadow rounded group first:col-span-2 max-h-[450px] relative"
+              className="flex flex-col col-span-1 w-full shadow rounded group first:col-span-2 max-h-[450px] relative hover:bg-[#f5f6fa]"
             >
               <div className="">
                 <img

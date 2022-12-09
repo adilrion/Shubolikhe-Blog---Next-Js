@@ -44,13 +44,13 @@ const About = () => {
       <section className="about-section py-4 lg:px-52 bg-white px-2">
         {aboutMe.map((data) => (
           <div>
-            <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded ">
+            <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
               <img
-                className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-l max-h-[500px] h-full w-full"
+                className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-t-none md:rounded-l max-h-[500px] h-full w-full"
                 src={data?.img}
                 alt="about me"
               />
-              <div className="lg:col-span-3 xl:col-span-1 flex flex-col justify-end items-center w-full py-2 md:py-6 p-2 md:pr-6 gap-y-2">
+              <div className="lg:col-span-3 xl:col-span-1 flex flex-col justify-end items-center w-full py-2 md:py-6 p-2 md:pr-6 gap-y-2 ">
                 <h1 className="text-[#2c2c2c] text-[35px] md:text-[40px] uppercase font-serif leading-[1.4] border-b w-full text-center">
                   About Me
                 </h1>
