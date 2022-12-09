@@ -3,6 +3,7 @@ import Navigation from "../components/navbar/navigation";
 import About from "./about";
 import Blogs from './blogs';
 import Contact from "./contact";
+import Tag from "./tag";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       </Head>
       <main>
         <Blogs/>
+        <Tag/>
         <About />
         <Contact />
       </main>

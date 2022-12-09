@@ -26,7 +26,7 @@ const social = [
 const Footer = () => {
   return (
     <>
-      <footer className="py-16 px-5  lg:px-52 bg-[#f4f6f8] sm:px-10 mt-10">
+      <footer className="py-16 px-5  lg:px-52  bg-[#f5f6fa] sm:px-10 mt-10">
         <div className="md:grid lg:grid-cols-3 md:grid-cols-2 md:gap-10">
           <div className="col-span-1 md:col-span-2 lg:col-span-1 mb-6 md:mb-0">
             <Link
