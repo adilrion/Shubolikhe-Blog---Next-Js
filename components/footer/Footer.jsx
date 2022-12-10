@@ -1,5 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import {
+  book,
+  food,
+  movingPicture,
+  music,
+  nature,
+  review,
+  thought,
+  travel,
+} from "../../pages/assest";
 const social = [
   {
     name: "facebook",
@@ -23,104 +33,75 @@ const social = [
   },
 ];
 
+const navigation = [
+  { name: "Home", href: "/", current: false },
+  { name: "Blog", href: "/blogs", current: false },
+  { name: "About", href: "/about", current: false },
+  { name: "Contact", href: "/contact", current: false },
+];
+
+const tag = [
+  { href: "##", tag: "Book", img: book },
+  { href: "##", tag: "Music", img: music },
+  { href: "##", tag: "Food", img: food },
+  { href: "##", tag: "Travel", img: travel },
+  { href: "##", tag: "Nature", img: nature },
+  { href: "##", tag: "Thought", img: thought },
+  { href: "##", tag: "Review", img: review },
+  { href: "##", tag: "Moving Picture", img: movingPicture },
+];
+
 const Footer = () => {
   return (
     <>
       <footer className="py-16 px-5  lg:px-52  bg-[#f5f6fa] sm:px-10 mt-10">
-        <div className="md:grid lg:grid-cols-3 md:grid-cols-2 md:gap-10">
-          <div className="col-span-1 md:col-span-2 lg:col-span-1 mb-6 md:mb-0">
+        <div className="flex gap-x-8 flex-wrap">
+          <div className="">
             <Link
               href="#"
               target="_blank"
               className="flex items-center text-4xl font-extrabold"
             >
-              <h1 className=" text-[#b70038] text-[35px] md:text-[30px] uppercase  font-serif leading-[1]  w-full">
+              <h1 className=" text-[#b70038] text-[25px] pb-5 md:text-[30px] uppercase  font-serif leading-[1]  w-full">
                 Shubolikhe.Blog
               </h1>
             </Link>
           </div>
-          <div className="md:col-span-2 lg:col-span-2">
-            <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 sm:gap-6 sm:grid-cols-3">
-              <div>
+          <div className="grow">
+            <div className="flex gap-x-5 flex-wrap gap-y-5">
+              <div className="grow">
                 <h3 className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
                   Tag
                 </h3>
-                <ul>
-                  <li className="mb-1">
+
+                <div className="flex flex-col">
+                  {tag?.slice(0, 4)?.map((data) => (
                     <Link
-                      href="/tag-blog/Review"
-                      className="hover:text-[#b70038] text-[#222222]"
+                      href={data?.href}
+                      className=" hover:text-[#b70038]  text-[15px] text-[#222222]"
                     >
-                      Review
+                      {data?.tag}
                     </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/tag-blog/Food"
-                      className=" hover:text-[#b70038] text-[#222222]"
-                    >
-                      Food
-                    </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/tag-blog/Nature"
-                      className=" hover:text-[#b70038] text-[#222222]"
-                    >
-                      Nature
-                    </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/tag-blog/Travel"
-                      className=" hover:text-[#b70038] text-[#222222]"
-                    >
-                      Travel
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
-              <div>
+              <div className="grow">
                 <h3 className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
                   Navigation
                 </h3>
-                <ul>
-                  <li className="mb-1">
+                <div className="flex flex-col">
+                  {navigation?.slice(0, 4)?.map((data) => (
                     <Link
-                      href="/about"
+                      href={data?.href}
                       className="hover:text-[#b70038]  text-[15px] text-[#222222]"
                     >
-                      About
+                      {data?.name}
                     </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/blog"
-                      className=" hover:text-[#b70038] text-[15px] text-[#222222]"
-                    >
-                      Tags
-                    </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/tag-blog/Thoughts"
-                      className=" hover:text-[#b70038] text-[15px] text-[#222222]"
-                    >
-                      Thoughts
-                    </Link>
-                  </li>
-                  <li className="mb-1">
-                    <Link
-                      href="/contact"
-                      className=" hover:text-[#b70038] text-[15px] text-[#222222]"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
 
-              <div className="col-span-2 md:col-span-1 py-5 md:py-0">
+              <div className="grow">
                 <div
                   htmlFor="email-adress-icon"
                   className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0"
@@ -158,7 +139,7 @@ const Footer = () => {
           </div>
         </div>
         <hr className="my-6  border-gray-700 lg:my-5" />
-        <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <span className="text-sm text-gray-500 sm:text-center ">
             © 2022{" "}
             <Link href="home" className="hover:text-[#b70038]">
