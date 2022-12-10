@@ -41,7 +41,7 @@ const aboutMe = [
 const About = () => {
   return (
     <>
-      <section className="about-section py-4 lg:px-52 bg-white px-2">
+      <section className="about-section py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
         {aboutMe.map((data) => (
           <div>
             <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
@@ -63,10 +63,9 @@ const About = () => {
                   {social.map((data) => (
                     <Link href={data.href} className="">
                       <img
-                        className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
-                        src={data?.icon}
+                        className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "                        src={data?.icon}
                         alt={data.name}
-                        srcset=""
+                       
                       />
                     </Link>
                   ))}

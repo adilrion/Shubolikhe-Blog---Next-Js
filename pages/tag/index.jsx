@@ -30,9 +30,9 @@ const tag = [
 
 const Tag = () => {
   return (
-    <section className="py-4 px-5 lg:px-52 bg-white">
+    <section className="py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
       <header>
-        <h1 className="text-[#2c2c2c] text-[35px] md:text-[40px] uppercase font-serif leading-[1.4] w-full text-start py-2 border-b pl-2 bg-[#f5f6fa]">
+        <h1 className="text-[#2c2c2c] text-[20px]  md:text-[40px] uppercase font-serif leading-[1.4] w-full text-center md:text-start py-2 border-b pl-2 bg-[#f5f6fa]">
           Category
         </h1>
       </header>

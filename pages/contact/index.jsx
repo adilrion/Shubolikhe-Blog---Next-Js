@@ -29,7 +29,7 @@ const social = [
 const Contact = () => {
   return (
     <>
-      <section className="about-section py-4 lg:px-52 bg-white px-2">
+      <section className="about-section py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
         <div>
           <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
             <Image
@@ -50,7 +50,7 @@ const Contact = () => {
                       className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                       src={data?.icon}
                       alt={data.name}
-                      srcset=""
+                     
                     />
                   </Link>
                 ))}

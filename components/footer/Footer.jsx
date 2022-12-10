@@ -54,15 +54,15 @@ const tag = [
 const Footer = () => {
   return (
     <>
-      <footer className="py-16 px-5  lg:px-52  bg-[#f5f6fa] sm:px-10 mt-10">
-        <div className="flex gap-x-8 flex-wrap">
+      <footer className="md:py-16 py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-[#f5f6fa] mt-10">
+        <div className="flex gap-x-8 flex-wrap  pt-5 ">
           <div className="">
             <Link
               href="#"
               target="_blank"
-              className="flex items-center text-4xl font-extrabold"
+              className="flex items-center font-extrabold"
             >
-              <h1 className=" text-[#b70038] text-[25px] pb-5 md:text-[30px] uppercase  font-serif leading-[1]  w-full">
+              <h1 className=" text-[#b70038] text-[15px] sm-text-[25px] pb-5 md:text-[35px] uppercase  font-serif leading-[1]  w-full">
                 Shubolikhe.Blog
               </h1>
             </Link>
@@ -70,7 +70,7 @@ const Footer = () => {
           <div className="grow">
             <div className="flex gap-x-5 flex-wrap gap-y-5">
               <div className="grow">
-                <h3 className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
+                <h3 className="text-[#121212d8] text-[12px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
                   Tag
                 </h3>
 
@@ -78,7 +78,7 @@ const Footer = () => {
                   {tag?.slice(0, 4)?.map((data) => (
                     <Link
                       href={data?.href}
-                      className=" hover:text-[#b70038]  text-[15px] text-[#222222]"
+                      className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
                       {data?.tag}
                     </Link>
@@ -86,14 +86,14 @@ const Footer = () => {
                 </div>
               </div>
               <div className="grow">
-                <h3 className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
+                <h3 className="text-[#121212d8] text-[12px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0">
                   Navigation
                 </h3>
                 <div className="flex flex-col">
                   {navigation?.slice(0, 4)?.map((data) => (
                     <Link
                       href={data?.href}
-                      className="hover:text-[#b70038]  text-[15px] text-[#222222]"
+                      className="hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
                       {data?.name}
                     </Link>
@@ -104,9 +104,9 @@ const Footer = () => {
               <div className="grow">
                 <div
                   htmlFor="email-adress-icon"
-                  className="text-[#121212] text-[15px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0"
+                  className="text-[#121212d8] text-[12px] uppercase font-serif mb-3 leading-[1.4] font-bold p-0 m-0"
                 >
-                  Get more updates...
+                  Get more updates!
                 </div>
 
                 <div className="relative mt-1">
@@ -130,7 +130,7 @@ const Footer = () => {
                 </div>
                 <button
                   type="button"
-                  className="text-white rounded text-[15px] w-full mt-3 py-2 text-center mr-2 mb-1 bg-[#b70038] "
+                  className="text-white rounded text-[15px] w-full mt-3 py-2 text-center md:mr-2 mb-1 bg-[#b70038] "
                 >
                   SUBSCRIBE
                 </button>
@@ -138,7 +138,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className="my-6  border-gray-700 lg:my-5" />
+        <hr className="my-6  border-gray-300 lg:my-5" />
         <div className="flex items-center justify-between flex-wrap gap-2">
           <span className="text-sm text-gray-500 sm:text-center ">
             © 2022{" "}
@@ -155,7 +155,7 @@ const Footer = () => {
                   className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                   src={data?.icon}
                   alt={data.name}
-                  srcset=""
+                 
                 />
               </Link>
             ))}
