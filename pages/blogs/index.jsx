@@ -31,7 +31,7 @@ const index = () => {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/blog")
+    fetch("https://shubolikhe-blog-server-site-x3xi.vercel.app/blog")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -39,7 +39,6 @@ const index = () => {
       });
   }, []);
 
-  console.log(data);
 
   if (isLoading) {
     return (
