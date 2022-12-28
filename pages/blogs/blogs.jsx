@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./Blog.module.css";
+import urlFor from "../../lib/urlFor";
+import moment from "moment/moment";
 
 const social = [
   {
@@ -26,11 +28,9 @@ const social = [
   },
 ];
 
-const Blogs = ({data, isLoading}) => {
-
+const Blogs = ({ data, isLoading }) => {
   console.log(data, isLoading);
 
-  
   if (isLoading) {
     return (
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
@@ -38,11 +38,11 @@ const Blogs = ({data, isLoading}) => {
           {[{}, {}, {}, {}, {}, {}].map((blog) => (
             <div
               role="status"
-              class="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
+              className="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
             >
-              <div class="flex justify-center items-center mb-4 h-48 bg-gray-300 rounded ">
+              <div className="flex justify-center items-center mb-4 h-48 bg-gray-300 rounded ">
                 <svg
-                  class="w-12 h-12 text-gray-200 "
+                  className="w-12 h-12 text-gray-200 "
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                   fill="currentColor"
@@ -52,14 +52,14 @@ const Blogs = ({data, isLoading}) => {
                 </svg>
               </div>
               <div className="flex justify-between gap-10">
-                <div class="h-2 bg-gray-200 rounded-full  w-48 mb-4"></div>
-                <div class="h-2 bg-gray-200 rounded-full w-20  mb-4"></div>
+                <div className="h-2 bg-gray-200 rounded-full  w-48 mb-4"></div>
+                <div className="h-2 bg-gray-200 rounded-full w-20  mb-4"></div>
               </div>
-              <div class="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
-              <div class="h-2 bg-gray-200 rounded-full "></div>
-              <div class="h-2.5 bg-gray-200 rounded-full  w-32 mb-2"></div>
+              <div className="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-gray-200 rounded-full "></div>
+              <div className="h-2.5 bg-gray-200 rounded-full  w-32 mb-2"></div>
 
-              <span class="sr-only">Loading...</span>
+              <span className="sr-only">Loading...</span>
             </div>
           ))}
         </div>
@@ -74,22 +74,31 @@ const Blogs = ({data, isLoading}) => {
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
           {data?.map((blog) => (
             <Link
-              key={blog?._id}
-              href={`/read-blog/${blog._id}`}
+              key={blog?.slug?.current}
+              href={`${blog?.slug?.current}`}
               className="flex flex-col col-span-1 w-full shadow rounded group first:col-span-2 max-h-[450px] relative"
             >
               <div className="">
-                <img
+                <Image
                   className="rounded-t object-cover w-[100%] h-[300px]"
-                  src={blog?.img}
+                  src={urlFor(blog?.mainImage).url()}
                   alt="post 1"
+                  width="100"
+                  height="100"
                 />
               </div>
               <div className="p-2">
                 <div className="flex justify-between">
-                  <Link href="#" className="text-xs font-normal text-[#555555]">
-                    {blog?.category}
-                  </Link>
+                  <span className="leading-[1] m-0 p-0">
+                    <time
+                      className="text-xs font-normal text-[#555555]"
+                      dateTime="2017-03-27"
+                      title="27 March 2017"
+                    >
+                      {moment(blog?._createdAt).format("MMM Do YY")}
+                    </time>
+                  </span>
+
                   {/* Social Media Link */}
                   <div className="flex gap-x-2  ">
                     {social.map((data) => (
@@ -104,22 +113,32 @@ const Blogs = ({data, isLoading}) => {
                   </div>
                 </div>
                 <Link
-                  href={`/read-blog/${blog._id}`}
+                  href={`${blog.slug?.current}`}
                   className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0"
                 >
                   {blog.title}
                 </Link>
 
                 <br />
-                <span className="leading-[1] m-0 p-0">
-                  <time
-                    className="text-xs font-normal text-[#555555]"
-                    dateTime="2017-03-27"
-                    title="27 March 2017"
-                  >
-                    {blog?.date}
-                  </time>
-                </span>
+                <div className="flex gap-x-2">
+                  {blog?.categories?.slice(0, 3).map((data) => (
+                    <Link
+                      href="#"
+                      className=" flex gap-1 justify-center items-center  p-1 border"
+                    >
+                      {data?.image && (
+                        <img
+                          className="object-cover w-[20px] h-[20px] justify-center rounded-full"
+                          src={urlFor(data?.image).url()}
+                          alt={data?.title}
+                        />
+                      )}
+                      <div className="text-xs font-normal text-[#555555]">
+                        {data?.title}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </Link>
           ))}
