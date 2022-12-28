@@ -33,8 +33,9 @@ const Tag = ({ animals }) => {
         </h1>
       </header>
       <div className="flex flex-wrap gap-5 mt-4">
-        {tag.map((data) => (
+        {tag.map((data, index) => (
           <Link
+          key={index}
             href={data?.href}
             className=" shadow w-[250px] h-[250px] rounded grow hover:bg-[#f5f6fa] flex flex-col justify-center items-center gap-5"
           >

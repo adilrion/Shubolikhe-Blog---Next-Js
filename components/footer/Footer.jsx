@@ -75,8 +75,9 @@ const Footer = () => {
                 </h3>
 
                 <div className="flex flex-col">
-                  {tag?.slice(0, 4)?.map((data) => (
+                  {tag?.slice(0, 4)?.map((data, index) => (
                     <Link
+                    key={index}
                       href={data?.href}
                       className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
@@ -149,8 +150,8 @@ const Footer = () => {
           </span>
 
           <div className="flex gap-2">
-            {social.map((data) => (
-              <Link href={data.href} className="">
+            {social.map((data, index) => (
+              <Link key={index} href={data.href} className="">
                 <img
                   className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                   src={data?.icon}
