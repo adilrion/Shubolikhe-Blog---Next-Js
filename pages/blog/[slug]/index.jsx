@@ -1,3 +1,4 @@
+"client site"
 import moment from "moment";
 import { groq } from "next-sanity";
 import BlockContent from "@sanity/block-content-to-react";
@@ -5,7 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
@@ -23,6 +24,10 @@ const query = `*[_type == "post" && slug.current == $slug] {
 }`;
 
 const index = ({ slug }) => {
+
+
+
+  
   const [blog, setBlog] = useState({});
   console.log(blog);
   const [error, setError] = useState(null);
@@ -43,6 +48,23 @@ const index = ({ slug }) => {
     fetchData();
   }, [slug]);
 
+
+  const nameRef = useRef(null)
+
+
+  const handleClick = useCallback(() => {
+    window.location.href = `mailto:${blog?.author?.email}`
+  }, [blog?.author?.email])
+
+  useEffect(() => {
+    nameRef.current.addEventListener('click', handleClick)
+    return () => {
+      if(nameRef.current){
+        nameRef.current.removeEventListener('click', handleClick)
+      }
+    }
+  }, [handleClick])
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -54,10 +76,10 @@ const index = ({ slug }) => {
           {blog?.title}
         </title>
       </Head>
-      <div className="lg:grid lg:grid-cols-3 gap-6">
+      <div className="lg:grid lg:grid-cols-3 gap-4 divide-x">
         <div className="lg:col-span-3 xl:col-span-2 flex flex-col gap-4">
           <div className="border-b  flex flex-col gap-[5px]">
-            <h1 className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0">
+            <h1 className="text-[#121212] text-[30px] leading-[1.4] font-bold p-0 m-0">
               {blog?.title}
             </h1>
 
@@ -113,18 +135,23 @@ const index = ({ slug }) => {
         </div>
 
         <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-2">
-          <div className="flex gap-2">
-            
-            {/* {blog?.map((data, index) => (
-                  <Link key={index} href={data?.href} className="">
-                    <img
-                      className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
-                      src={data?.icon}
-                      alt={data?.name}
-                     
-                    />
-                  </Link>
-                ))} */}
+          <div className="flex flex-col gap-2 justify-center items-center border-b mx-4 pb-4">
+            <div>
+              {blog?.author?.image && (
+                <Image
+                  className=" object-fill rounded-full h-[200px] w-[200px] shadow"
+                  src={urlFor(blog?.author?.image).url()}
+                  alt={blog?.title}
+                  width="100"
+                  height="100"
+                />
+              )}
+            </div>
+            <h1 className="text-[17px]"> <span ref={nameRef} className="cursor-pointer hover:underline">{blog?.author?.name}</span></h1>
+            <div className="text-[#121212] text-[15px] line-clamp-6 text-center">
+              <BlockContent blocks={blog?.author?.bio} />
+            </div>
+           
           </div>
         </div>
       </div>

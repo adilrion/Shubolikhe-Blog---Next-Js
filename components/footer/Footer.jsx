@@ -77,7 +77,7 @@ const Footer = () => {
                 <div className="flex flex-col">
                   {tag?.slice(0, 4)?.map((data, index) => (
                     <Link
-                    key={index}
+                      key={index}
                       href={data?.href}
                       className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
@@ -91,8 +91,9 @@ const Footer = () => {
                   Navigation
                 </h3>
                 <div className="flex flex-col">
-                  {navigation?.slice(0, 4)?.map((data) => (
+                  {navigation?.slice(0, 4)?.map((data, index) => (
                     <Link
+                      key={index}
                       href={data?.href}
                       className="hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
@@ -156,7 +157,6 @@ const Footer = () => {
                   className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                   src={data?.icon}
                   alt={data.name}
-                 
                 />
               </Link>
             ))}
