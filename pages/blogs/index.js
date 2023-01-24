@@ -1,11 +1,10 @@
-
 import { groq } from "next-sanity";
 import React, { useEffect, useState } from "react";
 import { client } from "../../lib/sanity.client";
 import Blogs from "./blogs";
 import style from "./Blog.module.css";
 
-export const query = groq`
+const query = groq`
 *[_type == "post"]{
     ...,
     title,
@@ -20,26 +19,29 @@ export const query = groq`
 
 const BlogPages = () => {
   const [data, setData] = useState(null);
-
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    client
-      .fetch(query)
-      .then((res) => {
-        setData(res);
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(query);
+        setData(result);
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } catch (error) {
+        setError(error);
+      }
+    }
+    fetchData();
   }, []);
 
- 
+  if(error) {
+    return <div>{error}</div>
+  }
 
   return (
     <>
-      <Blogs data={data} isLoading={isLoading}></Blogs>
+      <Blogs data={data} isLoading={isLoading} error={error}></Blogs>
     </>
   );
 };

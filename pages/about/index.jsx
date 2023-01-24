@@ -60,12 +60,12 @@ const About = () => {
                 </div>
                 {/* Social Link */}
                 <div className="flex gap-2">
-                  {social.map((data) => (
-                    <Link href={data.href} className="">
+                  {social.map((data, index) => (
+                    <Link key={index} href={data.href} className="">
                       <img
-                        className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "                        src={data?.icon}
+                        className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
+                        src={data?.icon}
                         alt={data.name}
-                       
                       />
                     </Link>
                   ))}
@@ -73,9 +73,7 @@ const About = () => {
               </div>
             </div>
             <div className="pt-6 mx-2 xl:mx-40">
-              <p
-                className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]"
-              >
+              <p className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
                 {data?.details}
               </p>
             </div>
