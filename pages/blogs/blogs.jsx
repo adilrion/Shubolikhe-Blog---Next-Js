@@ -4,6 +4,7 @@ import React from "react";
 import style from "./Blog.module.css";
 import urlFor from "../../lib/urlFor";
 import moment from "moment/moment";
+import ClientSideRoute from "../clientSideRoute";
 
 const social = [
   {
@@ -35,8 +36,9 @@ const Blogs = ({ data, isLoading }) => {
     return (
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 animate-pulse">
-          {[{}, {}, {}, {}, {}, {}].map((blog) => (
+          {[{}, {}, {}, {}, {}, {},{},{}].map((blog, index) => (
             <div
+              key={index}
               role="status"
               className="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
             >
@@ -73,74 +75,75 @@ const Blogs = ({ data, isLoading }) => {
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
           {data?.map((blog) => (
-            <Link
-              key={blog?.slug?.current}
-              href={`${blog?.slug?.current}`}
-              className="flex flex-col col-span-1 w-full shadow rounded group first:col-span-2 max-h-[450px] relative"
+            <div className="first:col-span-2 group">
+              <ClientSideRoute
+              key={`${blog?.slug?.current}`}
+              route={`/blog/${blog?.slug?.current}`}
             >
-              <div className="">
-                <Image
-                  className="rounded-t object-cover w-[100%] h-[300px]"
-                  src={urlFor(blog?.mainImage).url()}
-                  alt="post 1"
-                  width="100"
-                  height="100"
-                />
-              </div>
-              <div className="p-2">
-                <div className="flex justify-between">
-                  <span className="leading-[1] m-0 p-0">
-                    <time
-                      className="text-xs font-normal text-[#555555]"
-                      dateTime="2017-03-27"
-                      title="27 March 2017"
-                    >
-                      {moment(blog?._createdAt).format("MMM Do YY")}
-                    </time>
-                  </span>
+              <div className="flex  flex-col w-full shadow rounded   max-h-[450px] relative">
+                <div className="overflow-hidden">
+                  <Image
+                    className="relative  rounded-t object-center object-cover w-[100%] h-[300px] group-hover:scale-105 transition-transform duration-300 ease-in-out "
+                    src={urlFor(blog?.mainImage).url()}
+                    alt="post 1"
+                    width="100"
+                    height="100"
+                  />
+                </div>
+                <div className="p-2">
+                  <div className="flex justify-between">
+                    <span className="leading-[1] m-0 p-0">
+                      <time
+                        className="text-xs font-normal text-[#555555]"
+                        dateTime="2017-03-27"
+                        title="27 March 2017"
+                      >
+                        {moment(blog?._createdAt).format("MMM Do YY")}
+                      </time>
+                    </span>
 
-                  {/* Social Media Link */}
-                  <div className="flex gap-x-2  ">
-                    {social.map((data) => (
-                      <div className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
-                        <img
-                          src={data.icon}
-                          alt={data.name}
-                          className="w-[15px]"
-                        />
-                      </div>
+                    {/* Social Media Link */}
+                    <div className="flex gap-x-2  ">
+                      {social.map((data) => (
+                        <div className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
+                          <img
+                            src={data.icon}
+                            alt={data.name}
+                            className="w-[15px]"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <Link
+                    href={`/blog/${blog?.slug?.current}`}
+                    className="text-[#121212] line-clamp-2 text-[20px] leading-[1.4] font-bold p-0 m-0"
+                  >
+                    {blog.title}
+                  </Link>
+                  <div className="flex gap-x-2 pt-1">
+                    {blog?.categories?.slice(0, 3).map((data) => (
+                      <Link
+                        href={`${data?.slug?.current}`}
+                        className=" flex gap-1 justify-center items-center p-1 px-[6px] border rounded-3xl"
+                      >
+                        {data?.image && (
+                          <img
+                            className="object-cover w-[20px] h-[20px] justify-center rounded-full"
+                            src={urlFor(data?.image).url()}
+                            alt={data?.title}
+                          />
+                        )}
+                        <div className="text-xs font-normal text-[#555555]">
+                          {data?.title}
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
-                <Link
-                  href={`${blog.slug?.current}`}
-                  className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0"
-                >
-                  {blog.title}
-                </Link>
-
-                <br />
-                <div className="flex gap-x-2">
-                  {blog?.categories?.slice(0, 3).map((data) => (
-                    <Link
-                      href="#"
-                      className=" flex gap-1 justify-center items-center  p-1 border"
-                    >
-                      {data?.image && (
-                        <img
-                          className="object-cover w-[20px] h-[20px] justify-center rounded-full"
-                          src={urlFor(data?.image).url()}
-                          alt={data?.title}
-                        />
-                      )}
-                      <div className="text-xs font-normal text-[#555555]">
-                        {data?.title}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
               </div>
-            </Link>
+            </ClientSideRoute>
+            </div>
           ))}
         </div>
       </section>

@@ -10,8 +10,12 @@ export const query = groq`
     ...,
     title,
     author->,
-    categories[]->
-}
+    categories[]->{
+      slug,
+      image,
+      title,
+    }
+} | order(_createAt desc)
 `;
 
 const BlogPages = () => {
