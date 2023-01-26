@@ -41,7 +41,7 @@ const BlogPages = () => {
 
   return (
     <>
-      <Blogs data={data} isLoading={isLoading} error={error}></Blogs>
+      <Blogs data={data} isLoading={isLoading} ></Blogs>
     </>
   );
 };

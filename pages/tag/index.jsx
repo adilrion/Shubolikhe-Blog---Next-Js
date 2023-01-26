@@ -24,7 +24,7 @@ const tag = [
   { href: "##", tag: "Moving Picture", img: movingPicture },
 ];
 
-const Tag = ({ animals }) => {
+const Tag = () => {
   return (
     <section className="py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
       <header>

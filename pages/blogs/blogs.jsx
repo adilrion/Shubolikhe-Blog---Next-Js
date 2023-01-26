@@ -30,7 +30,6 @@ const social = [
 ];
 
 const Blogs = ({ data, isLoading }) => {
-  console.log(data, isLoading);
 
   if (isLoading) {
     return (
@@ -74,10 +73,10 @@ const Blogs = ({ data, isLoading }) => {
     <section>
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
-          {data?.map((blog) => (
-            <div className="first:col-span-2 group">
+          {data?.map((blog , index) => (
+            <div key={`${blog?.slug?.current}`} className="first:col-span-2 group">
               <ClientSideRoute
-              key={`${blog?.slug?.current}`}
+              
               route={`/blog/${blog?.slug?.current}`}
             >
               <div className="flex  flex-col w-full shadow rounded   max-h-[450px] relative">
@@ -122,9 +121,10 @@ const Blogs = ({ data, isLoading }) => {
                     {blog.title}
                   </Link>
                   <div className="flex gap-x-2 pt-1">
-                    {blog?.categories?.slice(0, 3).map((data) => (
+                    {blog?.categories?.slice(0, 3).map((data, index) => (
                       <Link
-                        href={`${data?.slug?.current}`}
+                      key={index}
+                        href={`/categories/${data?.slug?.current}`}
                         className=" flex gap-1 justify-center items-center p-1 px-[6px] border rounded-3xl"
                       >
                         {data?.image && (

@@ -1,17 +1,16 @@
-"client site"
+"client site";
 import moment from "moment";
 import { groq } from "next-sanity";
 import BlockContent from "@sanity/block-content-to-react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
 
-const query = `*[_type == "post" && slug.current == $slug] {
+const query = groq`*[_type == "post" && slug.current == $slug] {
   title,
   author->,
   mainImage,
@@ -23,18 +22,28 @@ const query = `*[_type == "post" && slug.current == $slug] {
   }
 }`;
 
+const recentQuery = groq`*[_type == "post"] | order(publishedAt desc) [0...10] { 
+   ...,
+    title,
+    author->,
+    categories[]->{
+      slug,
+      image,
+      title,
+    } 
+}`;
+
 const index = ({ slug }) => {
-
-
-
-  
   const [blog, setBlog] = useState({});
-  console.log(blog);
+  const [recentBlog, setRecentBlogs] = useState(null);
+  console.log(recentBlog);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const recentBlog = await client.fetch(recentQuery);
+        setRecentBlogs(recentBlog);
         const result = await client.fetch(query, { slug });
         if (result.length > 0) {
           setBlog(result[0]);
@@ -45,25 +54,24 @@ const index = ({ slug }) => {
         setError(error);
       }
     };
+
     fetchData();
   }, [slug]);
 
-
-  const nameRef = useRef(null)
-
+  const nameRef = useRef(null);
 
   const handleClick = useCallback(() => {
-    window.location.href = `mailto:${blog?.author?.email}`
-  }, [blog?.author?.email])
+    window.location.href = `mailto:${blog?.author?.email}`;
+  }, [blog?.author?.email]);
 
   useEffect(() => {
-    nameRef.current.addEventListener('click', handleClick)
+    nameRef.current.addEventListener("click", handleClick);
     return () => {
-      if(nameRef.current){
-        nameRef.current.removeEventListener('click', handleClick)
+      if (nameRef.current) {
+        nameRef.current.removeEventListener("click", handleClick);
       }
-    }
-  }, [handleClick])
+    };
+  }, [handleClick]);
 
   if (error) {
     return <div>{error}</div>;
@@ -116,7 +124,7 @@ const index = ({ slug }) => {
             {blog?.categories?.map((data, index) => (
               <Link
                 key={index}
-                href={`${data?.slug?.current}`}
+                href={`/categories/${data?.slug?.current}`}
                 className=" flex gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
               >
                 {data?.image && (
@@ -134,8 +142,12 @@ const index = ({ slug }) => {
           </div>
         </div>
 
-        <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-2">
-          <div className="flex flex-col gap-2 justify-center items-center border-b mx-4 pb-4">
+        <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 px-4">
+          <div className=" border-b  pb-4">
+          <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 mb-4">
+          Meet the Minds Behind the Words
+            </p>
+            <div className="flex flex-col gap-2 justify-center items-center">
             <div>
               {blog?.author?.image && (
                 <Image
@@ -147,11 +159,40 @@ const index = ({ slug }) => {
                 />
               )}
             </div>
-            <h1 className="text-[17px]"> <span ref={nameRef} className="cursor-pointer hover:underline">{blog?.author?.name}</span></h1>
+            <h1 className="text-[17px]">
+              {" "}
+              <span ref={nameRef} className="cursor-pointer hover:underline">
+                {blog?.author?.name}
+              </span>
+            </h1>
             <div className="text-[#121212] text-[15px] line-clamp-6 text-center">
               <BlockContent blocks={blog?.author?.bio} />
             </div>
-           
+            </div>
+          </div>
+
+          <div>
+            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 mb-4">
+              Recent Insights: Our Latest Blog Posts
+            </p>
+            {recentBlog &&
+              recentBlog?.map((data, index) => (
+                <Link
+                href={`/blog/${data?.slug?.current}`}
+                  key={index}
+                  className="flex flex-col gap-y-1 mb-3 border-b pb-1 group"
+                >
+                  <h1
+                    
+                    className="text-[#121212] line-clamp-1 text-[20px] leading-[1.4] font-bold p-0 m-0 group-hover:underline"
+                  >
+                    {data.title}
+                  </h1>
+                  <div className="text-[#121212] text-[15px] line-clamp-2 text-start">
+                    <BlockContent blocks={data?.body} />
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </div>
