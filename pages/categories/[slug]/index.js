@@ -1,4 +1,4 @@
-'client side'
+"client side";
 
 import { data } from "autoprefixer";
 import Link from "next/link";
@@ -89,19 +89,23 @@ const index = ({ category }) => {
       }
     };
     fetchData();
+  }, [categoriesToInclude]);
+
+  useEffect(() => {
+    setCategoriesToInclude(category);
   }, [category]);
 
   if (error) {
     return <p>{error.message}</p>;
   }
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
         <div className="flex items-center h-14 animate-pulse w-full  py-2 border-b pl-2 bg-[#f5f6fa] mb-6">
-        <div className="h-4 bg-gray-200 rounded-full  w-[30%]"></div>
+          <div className="h-4 bg-gray-200 rounded-full  w-[30%]"></div>
         </div>
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 animate-pulse">
-          {[{}, {}, {}, {}, {}].map((blog, index) => (
+          {[{}, {}, {}, {}, {}].map((data, index) => (
             <div
               key={index}
               role="status"
@@ -134,23 +138,23 @@ const index = ({ category }) => {
     );
   }
   return (
-    <section >
+    <section>
       <Head>
         <title className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0">
-        Exploring the  {category} category 
+          Exploring the {category} category
         </title>
       </Head>
-      
+
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
-      <header className="mb-6">
-        <h1 className="text-[#2c2c2c] text-[20px]  md:text-[40px] capitalize font-serif leading-[1.4] w-full text-center md:text-start py-2 border-b pl-2 bg-[#f5f6fa]">
-        Exploring the  {category} category 
-        </h1>
-      </header>
+        <header className="mb-6">
+          <h1 className="text-[#2c2c2c] text-[20px]  md:text-[40px] capitalize font-serif leading-[1.4] w-full text-center md:text-start py-2 border-b pl-2 bg-[#f5f6fa]">
+            Exploring the {category} category
+          </h1>
+        </header>
         <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
           {data?.map((blog, index) => (
             <div
-              key={`${blog?.slug?.current}`}
+              key={index}
               className="first:col-span-2 group"
             >
               <ClientSideRoute route={`/blog/${blog?.slug?.current}`}>
@@ -178,8 +182,8 @@ const index = ({ category }) => {
 
                       {/* Social Media Link */}
                       <div className="flex gap-x-2  ">
-                        {social.map((data) => (
-                          <div className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
+                        {social.map((data, index) => (
+                          <div key={index} className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
                             <img
                               src={data.icon}
                               alt={data.name}
