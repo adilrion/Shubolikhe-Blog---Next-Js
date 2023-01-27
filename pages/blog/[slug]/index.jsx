@@ -82,7 +82,7 @@ const index = ({ slug }) => {
   if (isLoading) {
     return (
       <div>
-        <div className="lg:grid lg:grid-cols-3 gap-4 divide-x py-4 px-5 lg:px-52 bg-white">
+        <div className="lg:grid lg:grid-cols-3 gap-4 xl:divide-x py-4 px-5 lg:px-52 bg-white">
           <div className="lg:col-span-3 xl:col-span-2 flex flex-col gap-4 animate-pulse">
             <div className="border-b  flex flex-col gap-[5px] ">
               <div className="h-4 bg-gray-200 rounded-full  w-full mb-1"></div>
@@ -111,8 +111,8 @@ const index = ({ slug }) => {
               <div className="h-2.5 bg-gray-200 rounded-full  w-full mb-2"></div>
               <div className="h-2.5 bg-gray-200 rounded-full  w-96 mb-2"></div>
             </div>
-            <div className="flex items-center gap-[5px]">
-              <div className="h-5 bg-gray-200 rounded-full  w-32"></div>
+            <div className="md:flex items-center gap-[5px] hidden md:block">
+              <div className="h-[20px] p-1 bg-gray-200 rounded-full  w-32"></div>
               {[{}, {}, {}, {}, {}].map((data, index) => (
                 <div
                   key={index}
@@ -135,9 +135,9 @@ const index = ({ slug }) => {
             </div>
           </div>
 
-          <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 px-4 animate-pulse">
-            <div className=" border-b  pb-4">
-              <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 py-3 mb-4 bg-[#f5f6fa] "></p>{" "}
+          <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 md:px-4 animate-pulse">
+            <div className="pb-4 mt-4 md:mt-0">
+              <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 py-3  mb-4 bg-[#f5f6fa] "></p>{" "}
               <div className="flex flex-col gap-2 justify-center items-center">
                 <div className="flex justify-center items-center mb-4 h-[200px] w-[200px] shadow bg-gray-300 rounded-full ">
                   <svg
@@ -190,7 +190,7 @@ const index = ({ slug }) => {
           {blog?.title}
         </title>
       </Head>
-      <div className="lg:grid lg:grid-cols-3 gap-4 divide-x">
+      <div className="lg:grid lg:grid-cols-3 gap-4 xl:divide-x">
         <div className="lg:col-span-3 xl:col-span-2 flex flex-col gap-4">
           <div className="border-b  flex flex-col gap-[5px] ">
             <h1 className="text-[#121212] text-[30px] leading-[1.4] font-bold p-0 m-0">
@@ -223,7 +223,7 @@ const index = ({ slug }) => {
           <div className="first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
             <BlockContent blocks={blog?.body} />
           </div>
-          <div className="flex items-center gap-[5px]">
+          <div className="md:flex items-center gap-[5px] mb-6 hidden md:block">
             <span className="text-xs font-normal text-[#555555] capitalize">
               categories:
             </span>
@@ -248,8 +248,8 @@ const index = ({ slug }) => {
           </div>
         </div>
 
-        <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 px-4">
-          <div className=" border-b  pb-4">
+        <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 md:px-4 mt-4 md:mt-0">
+          <div className="   pb-4">
             <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 py-1 bg-[#f5f6fa] mb-4">
               Meet the Minds Behind the Words
             </p>
@@ -286,7 +286,7 @@ const index = ({ slug }) => {
                 <Link
                   href={`/blog/${data?.slug?.current}`}
                   key={index}
-                  className="flex flex-col gap-y-1 mb-3 border-b pb-1 group"
+                  className="flex flex-col gap-y-1 mb-3 border-b last:border-none pb-1 group"
                 >
                   <h1 className="text-[#121212] line-clamp-1 text-[20px] leading-[1.4] font-bold p-0 m-0 group-hover:underline">
                     {data.title}

@@ -104,12 +104,12 @@ const index = ({ category }) => {
         <div className="flex items-center h-14 animate-pulse w-full  py-2 border-b pl-2 bg-[#f5f6fa] mb-6">
           <div className="h-4 bg-gray-200 rounded-full  w-[30%]"></div>
         </div>
-        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 animate-pulse">
+        <div className="grid md:grid-cols-3 grid-cols-1  gap-6 animate-pulse">
           {[{}, {}, {}, {}, {}].map((data, index) => (
             <div
               key={index}
               role="status"
-              className="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
+              className="p-4 w-full md:first:col-span-2 col-span-1 rounded border border-gray-200 shadow animate-pulse md:p-6 "
             >
               <div className="flex justify-center items-center mb-4 h-48 bg-gray-300 rounded ">
                 <svg
@@ -151,11 +151,11 @@ const index = ({ category }) => {
             Exploring the {category} category
           </h1>
         </header>
-        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
+        <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-6 divide-slate-800 ">
           {data?.map((blog, index) => (
             <div
               key={index}
-              className="first:col-span-2 group"
+              className="md:first:col-span-2 col-span-1 group"
             >
               <ClientSideRoute route={`/blog/${blog?.slug?.current}`}>
                 <div className="flex  flex-col w-full shadow rounded   max-h-[450px] relative">
