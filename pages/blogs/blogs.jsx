@@ -58,7 +58,7 @@ const Blogs = ({ data, isLoading }) => {
               </div>
               <div className="h-2 bg-gray-200 rounded-full  mb-2.5"></div>
               <div className="h-2 bg-gray-200 rounded-full "></div>
-              <div className="h-2.5 bg-gray-200 rounded-full  w-32 mb-2"></div>
+              <div className="h-2.5 bg-gray-200 rounded-full  w-32 mb-2 mt-2"></div>
 
               <span className="sr-only">Loading...</span>
             </div>
