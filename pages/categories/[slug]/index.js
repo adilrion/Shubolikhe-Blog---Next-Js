@@ -47,7 +47,7 @@ const index = ({ category }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [categoriesToInclude, setCategoriesToInclude] = useState([category]);
+  const [categoriesToInclude, setCategoriesToInclude] = useState(category);
 
   useEffect(() => {
     const fetchData = async () => {
