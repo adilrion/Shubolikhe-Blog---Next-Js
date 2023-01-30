@@ -137,9 +137,9 @@ const index = ({ category }) => {
 
       <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
         <header className="mb-6">
-          <h1 className="text-[#2c2c2c] text-[20px]  md:text-[40px] capitalize font-serif leading-[1.4] w-full text-center md:text-start py-2 border-b pl-2 bg-[#f5f6fa]">
-            Exploring the {category} category
-          </h1>
+          <p className="text-gray-500 border-l-4 border-gray-500 w-fit italic pl-2 pr-3 py-1 bg-[#f5f6fa] rounded-r">
+          Exploring the "{category}" category
+          </p>
         </header>
         <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-6 divide-slate-800 ">
           {paginatedData?.map((blog, index) => (

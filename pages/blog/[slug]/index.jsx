@@ -249,7 +249,7 @@ const index = ({ slug }) => {
 
         <div className="lg:col-span-3 xl:col-span-1 flex flex-col w-full gap-y-4 md:px-4 mt-4 md:mt-0">
           <div className="   pb-4">
-            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 py-1 bg-[#f5f6fa] mb-4">
+            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 pr-3 py-1 bg-[#f5f6fa] mb-4 rounded-r">
               Meet the Minds Behind the Words
             </p>
             <div className="flex flex-col gap-2 justify-center items-center">
@@ -277,7 +277,7 @@ const index = ({ slug }) => {
           </div>
 
           <div>
-            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 py-1 mb-4 bg-[#f5f6fa]">
+            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 pr-3 py-1 mb-4 bg-[#f5f6fa] rounded-r">
               Recent Insights: Our Latest Blog Posts
             </p>
             {recentBlogs &&
