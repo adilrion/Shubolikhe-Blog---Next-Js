@@ -17,7 +17,7 @@ const query = groq`
 } | order(_createdAt desc)
 `;
 
-const pageSize = 2;
+const pageSize = 5;
 
 const BlogPages = () => {
   const [data, setData] = useState(null);
@@ -48,7 +48,7 @@ const BlogPages = () => {
 
   if (!data) return <p>No profile Data</p>;
 
-  const paginatedData = data.slice(
+  const paginatedData = data?.slice(
     currentPage * pageSize,
     (currentPage + 1) * pageSize
   );
