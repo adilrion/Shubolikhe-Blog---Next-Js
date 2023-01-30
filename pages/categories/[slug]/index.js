@@ -1,16 +1,15 @@
 "client side";
 
-import { data } from "autoprefixer";
-import Link from "next/link";
-import Image from "next/image";
 import moment from "moment";
 import { groq } from "next-sanity";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
 import ClientSideRoute from "../../clientSideRoute";
-import Head from "next/head";
 
 const social = [
   {
@@ -193,7 +192,7 @@ const index = ({ category }) => {
                         ))}
                       </div>
                     </div>
-                    <Link
+                    <Link id="RouterNavLink"
                       href={`/blog/${blog?.slug?.current}`}
                       className="text-[#121212] line-clamp-2 text-[20px] leading-[1.4] font-bold p-0 m-0"
                     >
@@ -201,7 +200,7 @@ const index = ({ category }) => {
                     </Link>
                     <div className="flex gap-x-2 pt-1">
                       {blog?.categories?.slice(0, 3).map((data, index) => (
-                        <Link
+                        <Link id="RouterNavLink"
                           key={index}
                           href={`/categories/${data?.slug?.current}`}
                           className=" flex gap-1 justify-center items-center p-1 px-[6px] border rounded-3xl"

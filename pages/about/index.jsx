@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 const social = [
   {
@@ -42,8 +42,8 @@ const About = () => {
   return (
     <>
       <section className="about-section py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
-        {aboutMe.map((data) => (
-          <div>
+        {aboutMe.map((data, index) => (
+          <div key={index}>
             <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
               <img
                 className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-t-none md:rounded-l max-h-[500px] h-full w-full"
@@ -61,7 +61,7 @@ const About = () => {
                 {/* Social Link */}
                 <div className="flex gap-2">
                   {social.map((data, index) => (
-                    <Link key={index} href={data.href} className="">
+                    <Link id="RouterNavLink" key={index} href={data.href} className="">
                       <img
                         className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                         src={data?.icon}

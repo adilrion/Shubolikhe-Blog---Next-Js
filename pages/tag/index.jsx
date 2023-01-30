@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   book,
@@ -10,7 +10,7 @@ import {
   nature,
   review,
   thought,
-  travel,
+  travel
 } from "../assest";
 
 const tag = [
@@ -34,7 +34,7 @@ const Tag = () => {
       </header>
       <div className="flex flex-wrap gap-5 mt-4">
         {tag.map((data, index) => (
-          <Link
+          <Link id="RouterNavLink"
           key={index}
             href={data?.href}
             className=" shadow w-[250px] h-[250px] rounded grow hover:bg-[#f5f6fa] flex flex-col justify-center items-center gap-5"

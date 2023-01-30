@@ -1,7 +1,6 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import { Disclosure } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 const navigation = [
     { name: "Home", href: "/", current: false },
@@ -39,7 +38,7 @@ export default function Navigation() {
                 <div className="hidden sm:ml-6 md:ml-0 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <Link
+                      <Link id="RouterNavLink" 
                         key={item.name}
                         href={item.href}
                         className={classNames(

@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 import {
   book,
   food,
@@ -8,7 +8,7 @@ import {
   nature,
   review,
   thought,
-  travel,
+  travel
 } from "../../pages/assest";
 const social = [
   {
@@ -57,7 +57,7 @@ const Footer = () => {
       <footer className="md:py-16 py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-[#f5f6fa] mt-10">
         <div className="flex gap-x-8 flex-wrap  pt-5 ">
           <div className="">
-            <Link
+            <Link id="RouterNavLink" 
               href="#"
               target="_blank"
               className="flex items-center font-extrabold"
@@ -76,7 +76,7 @@ const Footer = () => {
 
                 <div className="flex flex-col">
                   {tag?.slice(0, 4)?.map((data, index) => (
-                    <Link
+                    <Link id="RouterNavLink"
                       key={index}
                       href={data?.href}
                       className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
@@ -92,7 +92,7 @@ const Footer = () => {
                 </h3>
                 <div className="flex flex-col">
                   {navigation?.slice(0, 4)?.map((data, index) => (
-                    <Link
+                    <Link id="RouterNavLink"
                       key={index}
                       href={data?.href}
                       className="hover:text-[#b70038]  text-[15px] text-[#121212d8]"
@@ -144,7 +144,7 @@ const Footer = () => {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <span className="text-sm text-gray-500 sm:text-center ">
             © 2022{" "}
-            <Link href="home" className="hover:text-[#b70038]">
+            <Link id="RouterNavLink" href="home" className="hover:text-[#b70038]">
               Shubolikhe.blog
             </Link>
             . All Rights Reserved.
@@ -152,7 +152,7 @@ const Footer = () => {
 
           <div className="flex gap-2">
             {social.map((data, index) => (
-              <Link key={index} href={data.href} className="">
+              <Link id="RouterNavLink" key={index} href={data.href} className="">
                 <img
                   className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
                   src={data?.icon}

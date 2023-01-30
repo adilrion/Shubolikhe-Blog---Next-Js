@@ -1,15 +1,15 @@
 "client site";
+import BlockContent from "@sanity/block-content-to-react";
 import moment from "moment";
 import { groq } from "next-sanity";
-import BlockContent from "@sanity/block-content-to-react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { client } from "../../../lib/sanity.client";
+import SingleBlogLoading from "../../../lib/singleBlogLoading";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
-import SingleBlogLoading from "../../../lib/singleBlogLoading";
 
 const query = groq`*[_type == "post" && slug.current == $slug] {
   title,
@@ -134,7 +134,7 @@ const index = ({ slug }) => {
               categories:
             </span>
             {blog?.categories?.map((data, index) => (
-              <Link
+              <Link id="RouterNavLink"
                 key={index}
                 href={`/categories/${data?.slug?.current}`}
                 className=" flex gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
@@ -189,7 +189,7 @@ const index = ({ slug }) => {
             </p>
             {recentBlogs &&
               recentBlogs?.map((data, index) => (
-                <Link
+                <Link id="RouterNavLink"
                   href={`/blog/${data?.slug?.current}`}
                   key={index}
                   className="flex flex-col gap-y-1 mb-3 border-b last:border-none pb-1 group"
