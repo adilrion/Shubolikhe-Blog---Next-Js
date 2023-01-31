@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BlogLoading from "../../lib/BlogLoading";
+import { FormContext } from "../../lib/FormContext";
 import { client } from "../../lib/sanity.client";
 import Blogs from "./blogs";
 
@@ -20,13 +21,12 @@ const query = groq`
 const pageSize = 5;
 
 const BlogPages = () => {
+  const { formValues, message, setMessage } = useContext(FormContext);
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [notFound, setNotFound] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -43,33 +43,37 @@ const BlogPages = () => {
   }, []);
 
   useEffect(() => {
-    if (!searchTerm) {
+    setCurrentPage(0);
+
+    if (!formValues) {
       setFilteredData(data);
       return;
     }
 
     const filter = data?.filter(
       (post) =>
-        post?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post?.title?.toLowerCase().includes(formValues.toLowerCase()) ||
         (post?.author &&
           post?.author?.name
             ?.toLowerCase()
-            .includes(searchTerm.toLowerCase())) ||
+            .includes(formValues.toLowerCase())) ||
         (post?.categories &&
           post?.categories
             .map((category) => category?.title?.toLowerCase())
-            .some((title) => title?.includes(searchTerm.toLowerCase())))
+            .some((title) => title?.includes(formValues.toLowerCase())))
     );
-    if (filter.length !== 0) {
+    if (filter?.length !== 0) {
       setFilteredData(filter);
-      setNotFound(null);
+      setMessage(`We found over ${filter?.length} results for "${formValues}"`);
+      console.log("form f", formValues.length);
     } else {
-      setNotFound(
-        `Sorry, the requested "${searchTerm}" was not found! \n Please check out other available blogs to read`
+      setMessage(
+        `Sorry, the requested "${formValues}" was not found! \n Please check out other available blogs to read`
       );
       setFilteredData(data);
+      console.log("form z", formValues.length);
     }
-  }, [searchTerm, data]);
+  }, [formValues, data]);
 
   if (error) {
     return <div>{error}</div>;
@@ -98,34 +102,20 @@ const BlogPages = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(0);
-  };
-
   console.log(paginatedData.length);
 
   return (
     <>
-      <div className="flex justify-center mb-4">
-        <input
-          type="text"
-          className="w-64 p-2 rounded-lg"
-          placeholder="Search by title, author, categories"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      {notFound && (
+      {message && (
         <div className="py-4 px-5 lg:px-52 bg-white">
           <p className="text-gray-500 border-l-4 border-gray-500 w-fit italic pl-2 pr-3 py-1 bg-[#f5f6fa] rounded-r">
-            {notFound}
+            {message}
           </p>
         </div>
       )}
       <Blogs data={paginatedData}></Blogs>
 
-      {filteredData.length > pageSize && (
+      {filteredData?.length > pageSize && (
         <div className="flex justify-center items-center mt-4 gap-4  py-4 px-5 lg:px-52 bg-white">
           {currentPage !== 0 && (
             <button

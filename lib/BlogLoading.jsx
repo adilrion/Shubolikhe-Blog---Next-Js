@@ -2,13 +2,13 @@ import React from 'react'
 
 const BlogLoading = () => {
   return (
-    <section className= "py-4 px-5 lg:px-52 bg-white">
-        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 animate-pulse">
+    <section className= "py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-pulse">
           {[{}, {}, {}, {}, {}, {},{},{}].map((blog, index) => (
             <div
               key={index}
               role="status"
-              className="p-4 w-full first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
+              className="p-4 w-full md:first:col-span-2 rounded border border-gray-200 shadow animate-pulse md:p-6 "
             >
               <div className="flex justify-center items-center mb-4 h-48 bg-gray-300 rounded ">
                 <svg

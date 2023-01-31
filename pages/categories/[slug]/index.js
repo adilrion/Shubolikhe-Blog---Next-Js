@@ -135,7 +135,7 @@ const index = ({ category }) => {
         </title>
       </Head>
 
-      <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
+      <section className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white`}>
         <header className="mb-6">
           <p className="text-gray-500 border-l-4 border-gray-500 w-fit italic pl-2 pr-3 py-1 bg-[#f5f6fa] rounded-r">
           Exploring the "{category}" category

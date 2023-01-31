@@ -183,7 +183,7 @@ const index = ({ slug }) => {
   }
 
   return (
-    <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
+    <section className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white`}>
       <Head>
         <title className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0">
           {blog?.title}

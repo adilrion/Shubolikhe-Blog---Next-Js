@@ -36,10 +36,10 @@ const Blogs = ({ data }) => {
 
   return (
     <section>
-      <section className={`${style.blogSection} py-4 px-5 lg:px-52 bg-white`}>
-        <div className="grid md:grid-cols-3 sm:grid-cols-1  md:gap-6 divide-slate-800 ">
+      <section className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5  lg:px-52 bg-white`}>
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 divide-slate-800 ">
           {data?.map((blog , index) => (
-            <div key={index} className="first:col-span-2 group">
+            <div key={index} className="md:first:col-span-2 group">
               <ClientSideRoute
               route={`/blog/${blog?.slug?.current}`}
             >
@@ -86,7 +86,7 @@ const Blogs = ({ data }) => {
                   </Link>
                   <div className="flex gap-x-2 pt-1">
                     {blog?.categories?.slice(0, 3).map((data, index) => (
-                      <Link id="RouterNavLink"
+                      <Link
                       key={index}
                         href={`/categories/${data?.slug?.current}`}
                         className=" flex gap-1 justify-center items-center p-1 px-[6px] border rounded-3xl"
