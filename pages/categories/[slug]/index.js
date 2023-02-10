@@ -6,11 +6,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import BlogLoading from "../../../lib/BlogLoading";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
 import ClientSideRoute from "../../clientSideRoute";
+import Loading from "../../loading";
 
 const social = [
   {
@@ -104,7 +104,8 @@ const index = ({ category }) => {
   }
   if (isLoading) {
     return (
-      <BlogLoading></BlogLoading>
+      <div><Loading></Loading></div>
+      
     );
   }
   if (!data) return <p>No profile Data</p>;

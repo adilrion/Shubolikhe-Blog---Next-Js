@@ -1,9 +1,9 @@
 import React from 'react'
 
-const BlogLoading = () => {
+function Loading() {
   return (
     <section className= "py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-pulse">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-pulse h-fit">
           {[{}, {}, {}, {}, {}, {},{},{}].map((blog, index) => (
             <div
               key={index}
@@ -37,4 +37,4 @@ const BlogLoading = () => {
   )
 }
 
-export default BlogLoading
+export default Loading

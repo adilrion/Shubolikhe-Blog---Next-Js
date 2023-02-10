@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import BlogLoading from "../lib/BlogLoading";
 import { FormContext } from "../lib/FormContext";
 import Blogs from "./blogs/blogs";
+import Loading from "./loading";
 
 const index = ({ query }) => {
   const {
@@ -65,7 +65,9 @@ const index = ({ query }) => {
     }
 
   if (isLoading) {
-    return <BlogLoading />;
+    return (
+      <div><Loading></Loading></div>
+    );
   }
 
   if (!filteredData) return <p>No profile Data</p>;
