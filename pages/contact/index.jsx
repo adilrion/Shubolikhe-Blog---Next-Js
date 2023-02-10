@@ -110,8 +110,8 @@ const Contact = () => {
 
             {showSuccessMessage ? (
              
-              <p className="text-gray-500 border-l-4 border-gray-500 w-fit italic pl-2 pr-3 py-1 bg-[#f5f6fa] rounded-r mt-14">
-            Your message has been sent. Thank you!
+              <p className="text-gray-500 border-l-4 border-[#00c45c] w-fit italic pl-2 pr-3 py-1 bg-[#00c45c1d] rounded-r mt-14">
+            Your Mail has been sent. Thank you!
           </p>
             ) : (
               <form onSubmit={handleSubmit}>
