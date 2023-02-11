@@ -5,34 +5,15 @@ import { groq } from "next-sanity";
 import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
 import ClientSideRoute from "../../clientSideRoute";
 import Loading from "../../loading";
 
-const social = [
-  {
-    name: "facebook",
-    href: "#",
-    icon: "https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png",
-  },
-  {
-    name: "linkedin",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/402/997/png-transparent-linkedin-logo-computer-icons-facebook-user-profile-facebook-blue-angle-text.png",
-  },
-  {
-    name: "pinterest",
-    href: "#",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png",
-  },
-  {
-    name: "twitter",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png",
-  },
-];
+
 const query = groq`
 *[_type == "post"]{
     ...,
@@ -48,6 +29,9 @@ const query = groq`
 
 const pageSize = 5;
 const index = ({ category }) => {
+
+
+  const {socialMedia} = useContext(FormContext);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -179,18 +163,16 @@ const index = ({ category }) => {
 
                       {/* Social Media Link */}
                       <div className="flex gap-x-2  ">
-                        {social.map((data, index) => (
-                          <div
-                            key={index}
-                            className="hidden group-hover:block group-hover:transition duration-300 ease-in-out"
-                          >
-                            <img
-                              src={data.icon}
-                              alt={data.name}
-                              className="w-[15px]"
-                            />
-                          </div>
-                        ))}
+                      {socialMedia?.slice(0, 5)?.map((data, index) => (
+                        <Link key={index} href={data?.slug.current}
+                        target="_blank" className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
+                          <img
+                            src={urlFor(data?.icon).url()}
+                            alt={data?.media}
+                            className="w-[15px]"
+                          />
+                        </Link>
+                      ))}
                       </div>
                     </div>
                     <Link

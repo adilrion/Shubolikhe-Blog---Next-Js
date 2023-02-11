@@ -24,7 +24,7 @@ const BlogPages = () => {
     );
   }
 
-  if (!filteredData) return <p>No profile Data</p>;
+  // if (!filteredData) return <p>No profile Data</p>;
 
   return (
     <>

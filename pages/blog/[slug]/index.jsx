@@ -36,7 +36,7 @@ const recentQuery = groq`*[_type == "post"] | order(publishedAt desc) [0...10] {
 }`;
 
 const index = ({ slug }) => {
-  const { tag } = useContext(FormContext);
+  const { tag, socialMedia } = useContext(FormContext);
   const [blog, setBlog] = useState({});
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -200,7 +200,7 @@ const index = ({ slug }) => {
               {blog?.title}
             </h1>
 
-            <div>
+            <div className="flex justify-between items-center py-2">
               <span className="leading-[1] m-0 p-0">
                 <time
                   className="text-xs font-normal text-[#555555]"
@@ -210,6 +210,19 @@ const index = ({ slug }) => {
                   publish: {moment(blog?._createdAt).format("LLL")}
                 </time>
               </span>
+
+              <div className="flex gap-2">
+              {socialMedia?.map((data, index) => (
+                        <Link key={index} href={data?.slug.current}
+                        target="_blank" className="">
+                          <img
+                            src={urlFor(data?.icon).url()}
+                            alt={data?.media}
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
+                        </Link>
+                      ))}
+              </div>
             </div>
           </div>
           <div>
@@ -304,7 +317,7 @@ const index = ({ slug }) => {
           </div>
           <div>
             <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 pr-3 py-1 mb-4 bg-[#f5f6fa] rounded-r">
-              Recent Insights: Our Latest Blog Posts
+            Category
             </p>
 
             <div className="flex flex-wrap gap-2">

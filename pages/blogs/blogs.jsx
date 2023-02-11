@@ -11,15 +11,38 @@ import style from "./Blog.module.css";
 
 const Blogs = ({ data }) => {
 
-  const { socialMedia } = useContext(FormContext);
+  const { socialMedia, tag } = useContext(FormContext);
   console.log("🚀 ~ file: blogs.jsx:36 ~ Blogs ~ socialMedia", socialMedia)
 
  
 
   return (
     <section>
-      <section className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5  lg:px-52 bg-white`}>
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 divide-slate-800 ">
+      <section className={`${style.blogSection}px-2 sm:px-3 md:px-5  lg:px-52 bg-white`}>
+
+      <div className="flex flex-wrap gap-2">
+            {tag?.map((data, index) => (
+              <Link
+                id="RouterNavLink"
+                key={index}
+                href={`/categories/${data?.slug?.current}`}
+                className="flex  gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
+              >
+                {data?.image && (
+                  <img
+                    className="object-cover w-[20px] h-[20px] justify-center rounded-full"
+                    src={urlFor(data?.image).url()}
+                    alt={data?.title}
+                  />
+                )}
+                <div className="text-xs font-normal text-[#555555]">
+                  {data?.title}
+                </div>
+              </Link>
+            ))}
+            </div>
+
+        <div className="grid py-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 divide-slate-800 ">
           {data?.map((blog , index) => (
             <div key={index} className="md:first:col-span-2 group">
               <ClientSideRoute
