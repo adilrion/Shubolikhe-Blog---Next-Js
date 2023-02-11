@@ -89,7 +89,7 @@ const index = ({ category }) => {
             setMessage(`We found over ${filteredData?.length} results for "${category}" Categories`);
           } else {
             setMessage(
-              `We apologize, but the requested "${category}" category information could not be found. Please feel free to browse our other blogs and categories for more relevant content`
+              `We apologize, the requested "${category}" category information could not be found. Please feel free to browse our other blogs and categories for more relevant content`
             );
             setData(result);
           }

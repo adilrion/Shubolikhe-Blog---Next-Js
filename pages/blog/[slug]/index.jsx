@@ -6,6 +6,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useContext } from "react";
+import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
@@ -34,6 +36,7 @@ const recentQuery = groq`*[_type == "post"] | order(publishedAt desc) [0...10] {
 }`;
 
 const index = ({ slug }) => {
+  const { tag } = useContext(FormContext);
   const [blog, setBlog] = useState({});
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -298,6 +301,33 @@ const index = ({ slug }) => {
                   </div>
                 </Link>
               ))}
+          </div>
+          <div>
+            <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 pr-3 py-1 mb-4 bg-[#f5f6fa] rounded-r">
+              Recent Insights: Our Latest Blog Posts
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+            {tag?.map((data, index) => (
+              <Link
+                id="RouterNavLink"
+                key={index}
+                href={`/categories/${data?.slug?.current}`}
+                className="flex  gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
+              >
+                {data?.image && (
+                  <img
+                    className="object-cover w-[20px] h-[20px] justify-center rounded-full"
+                    src={urlFor(data?.image).url()}
+                    alt={data?.title}
+                  />
+                )}
+                <div className="text-xs font-normal text-[#555555]">
+                  {data?.title}
+                </div>
+              </Link>
+            ))}
+            </div>
           </div>
         </div>
       </div>
