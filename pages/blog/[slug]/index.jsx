@@ -177,9 +177,9 @@ const index = ({ slug }) => {
       </div>
     );
   }
-  if (error) {
+  /* if (error) {
     return <div>{error}</div>;
-  }
+  } */
 
   return (
     <section

@@ -7,28 +7,7 @@ import urlFor from "../../lib/urlFor";
 import ClientSideRoute from "../clientSideRoute";
 import style from "./Blog.module.css";
 
-const social = [
-  {
-    name: "facebook",
-    href: "#",
-    icon: "https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png",
-  },
-  {
-    name: "linkedin",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/402/997/png-transparent-linkedin-logo-computer-icons-facebook-user-profile-facebook-blue-angle-text.png",
-  },
-  {
-    name: "pinterest",
-    href: "#",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png",
-  },
-  {
-    name: "twitter",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png",
-  },
-];
+
 
 const Blogs = ({ data }) => {
 

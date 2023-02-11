@@ -10,6 +10,7 @@ import { client } from "../../lib/sanity.client";
 import urlFor from "../../lib/urlFor";
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
+import { SectionLoading } from "../../lib/sectionLoading";
 
 const social = [
   {
@@ -94,6 +95,15 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+
+
+  if (isLoading) {
+    return (
+     <div>
+      <SectionLoading/>
+     </div>
+    );
+  }
 
   return (
     <>
