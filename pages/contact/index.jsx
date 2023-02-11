@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import BlockContent from "@sanity/block-content-to-react";
+
+import React, { useEffect, useState } from "react";
 import { contact } from "../assest/index";
 import emailjs from "emailjs-com";
+import { groq } from "next-sanity";
+import { client } from "../../lib/sanity.client";
+import urlFor from "../../lib/urlFor";
+import { useContext } from "react";
+import { FormContext } from "../../lib/FormContext";
 
 const social = [
   {
@@ -27,7 +34,30 @@ const social = [
   },
 ];
 
+const query = groq`
+*[_type == "contactMe"]`;
 const Contact = () => {
+  const { socialMedia } = useContext(FormContext);
+  console.log("🚀 ~ file: index.jsx:42 ~ Contact ~ socialMedia", socialMedia);
+  // Contact Section data Fetch
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      try {
+        const result = await client.fetch(query);
+        setData(result);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
+
+  // data fetch end
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,30 +100,39 @@ const Contact = () => {
       <section className="about-section py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white">
         <div>
           <div className="lg:grid lg:grid-cols-3 gap-6 shadow rounded bg-[#f5f6fa]">
-            <Image
-              className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-t-none md:rounded-l max-h-[500px] h-full w-full"
-              src={contact}
-              alt="Contact me"
-            />
+            {data?.[0].image && (
+              <img
+                className="lg:col-span-3 xl:col-span-2 object-fill rounded-t md:rounded-t-none md:rounded-l max-h-[500px] h-full w-full"
+                src={urlFor(data?.[0].image).url()}
+                alt="Contact me"
+                width="100"
+                height="100"
+              />
+            )}
             <div className="lg:col-span-3 xl:col-span-1 flex flex-col justify-end items-center w-full py-2 md:py-6 p-2 md:pr-6 gap-y-2">
               <h1 className="text-[#2c2c2c] text-[35px] md:text-[40px] uppercase font-serif leading-[1.4] border-b w-full text-center">
-                Contact me
+                {data && data?.[0].contactSection}
               </h1>
 
               {/* Social Link */}
               <div className="flex gap-2">
-                {social.map((data, index) => (
+                {socialMedia?.slice(0, 10)?.map((data, index) => (
                   <Link
                     key={index}
                     id="RouterNavLink"
-                    href={data.href}
+                    href={data?.slug.current}
+                    target="_blank"
                     className=""
                   >
-                    <img
+                    {data?.icon && (
+                      <img
                       className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
-                      src={data?.icon}
-                      alt={data.name}
-                    />
+                      src={urlFor(data?.icon).url()}
+                        alt={data?.media}
+                        width="100"
+                        height="100"
+                      />
+                    )}
                   </Link>
                 ))}
               </div>
@@ -102,17 +141,14 @@ const Contact = () => {
           <div className="pt-6 mx-2 xl:mx-40">
             <div>
               <p className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
-                Trying to reach me? Then arrange some good words and develop
-                some perfect sentences. Now? Just through at to me. I may or may
-                not check them out on a good day.
+                <BlockContent blocks={data && data?.[0].bio} />
               </p>
             </div>
 
             {showSuccessMessage ? (
-             
               <p className="text-gray-500 border-l-4 border-[#00c45c] w-fit italic pl-2 pr-3 py-1 bg-[#00c45c1d] rounded-r mt-14">
-            Your Mail has been sent. Thank you!
-          </p>
+                Your Mail has been sent. Thank you!
+              </p>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="relative z-0 mb-6 mt-10 w-full group">

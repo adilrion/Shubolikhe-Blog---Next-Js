@@ -211,7 +211,7 @@ const index = ({ slug }) => {
           </div>
           <div>
             {blog?.mainImage && (
-              <Image
+              <img
                 className=" object-fill rounded max-h-[500px] h-full w-full shadow"
                 src={urlFor(blog?.mainImage).url()}
                 alt={blog?.title}
@@ -257,7 +257,7 @@ const index = ({ slug }) => {
             <div className="flex flex-col gap-2 justify-center items-center">
               <div>
                 {blog?.author?.image && (
-                  <Image
+                  <img
                     className=" object-fill rounded-full h-[200px] w-[200px] shadow"
                     src={urlFor(blog?.author?.image).url()}
                     alt={blog?.title}

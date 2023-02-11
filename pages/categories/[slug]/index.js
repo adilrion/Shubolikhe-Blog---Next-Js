@@ -148,7 +148,7 @@ const index = ({ category }) => {
               <ClientSideRoute route={`/blog/${blog?.slug?.current}`}>
                 <div className="flex  flex-col w-full shadow rounded   max-h-[450px] relative">
                   <div className="overflow-hidden">
-                    <Image
+                    <img
                       className="relative  rounded-t object-center object-cover w-[100%] h-[300px] group-hover:scale-105 transition-transform duration-300 ease-in-out "
                       src={urlFor(blog?.mainImage).url()}
                       alt="post 1"

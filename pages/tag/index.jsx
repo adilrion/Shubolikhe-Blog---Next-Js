@@ -2,6 +2,8 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { FormContext } from "../../lib/FormContext";
 import { client } from "../../lib/sanity.client";
 import urlFor from "../../lib/urlFor";
 
@@ -9,32 +11,13 @@ import urlFor from "../../lib/urlFor";
 
 
 
-const categoryQuery = groq`
-*[_type == "category"]{
-  title,
-  image,
-  slug, 
-}
-`;
 const Tag = () => {
 
-  const [data, setData] = useState(null);
-  console.log("🚀 ~ file: index.jsx:39 ~ Tag ~ data", data)
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await client.fetch(categoryQuery);
-        setData(result);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
+  const{tag, isLoading, error}=useContext(FormContext)
+  console.log(tag)
+
+ 
 
   
   return (
@@ -46,14 +29,14 @@ const Tag = () => {
           </p>
       </header>
       <div className="flex flex-wrap gap-5 mt-4">
-        {data?.map((data, index) => (
+        {tag?.map((data, index) => (
           <Link id="RouterNavLink"
           key={index}
           href={`/categories/${data?.slug?.current}`}
             className=" shadow w-[250px] h-[250px] rounded grow hover:bg-[#f5f6fa] flex flex-col justify-center items-center gap-5"
           >
              {data?.image && (
-              <Image
+              <img
               className="w-[70px] h-[70px] rounded"
                 src={urlFor(data?.image).url()}
                 alt={data?.title}

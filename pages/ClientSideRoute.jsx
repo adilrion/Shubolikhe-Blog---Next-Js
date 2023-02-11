@@ -7,7 +7,7 @@ import React from 'react'
 
 const ClientSideRoute = ({ children, route }) => {
   return (
-    <Link id="RouterNavLink" href={route}>{ children }</Link>
+    <div id="RouterNavLink" href={route}>{ children }</div>
   )
 }
 

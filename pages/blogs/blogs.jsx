@@ -1,7 +1,8 @@
 import moment from "moment/moment";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
+import { FormContext } from "../../lib/FormContext";
 import urlFor from "../../lib/urlFor";
 import ClientSideRoute from "../clientSideRoute";
 import style from "./Blog.module.css";
@@ -31,6 +32,8 @@ const social = [
 
 const Blogs = ({ data }) => {
 
+  const { socialMedia } = useContext(FormContext);
+  console.log("🚀 ~ file: blogs.jsx:36 ~ Blogs ~ socialMedia", socialMedia)
 
  
 
@@ -45,7 +48,7 @@ const Blogs = ({ data }) => {
             >
               <div className="flex  flex-col w-full shadow rounded   max-h-[450px] relative">
                 <div className="overflow-hidden">
-                  <Image
+                  <img
                     className="relative  rounded-t object-center object-cover w-[100%] h-[300px] group-hover:scale-105 transition-transform duration-300 ease-in-out "
                     src={urlFor(blog?.mainImage).url()}
                     alt="post 1"
@@ -67,14 +70,15 @@ const Blogs = ({ data }) => {
 
                     {/* Social Media Link */}
                     <div className="flex gap-x-2  ">
-                      {social.map((data, index) => (
-                        <div key={index} className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
+                      {socialMedia?.slice(0, 5)?.map((data, index) => (
+                        <Link key={index} href={data?.slug.current}
+                        target="_blank" className="hidden group-hover:block group-hover:transition duration-300 ease-in-out">
                           <img
-                            src={data.icon}
-                            alt={data.name}
+                            src={urlFor(data?.icon).url()}
+                            alt={data?.media}
                             className="w-[15px]"
                           />
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   </div>

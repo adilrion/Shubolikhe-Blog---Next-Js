@@ -4,7 +4,7 @@ import Link from "next/link";
 import SearchBar from "../../lib/searchBar";
 
 const navigation = [
-  { name: "Home", href: "/home", current: false },
+  { name: "Home", href: "/", current: false },
   { name: "Blog", href: "/blogs", current: false },
   { name: "About", href: "/about", current: false },
   { name: "Contact", href: "/contact", current: false },

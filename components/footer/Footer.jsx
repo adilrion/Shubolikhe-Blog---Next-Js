@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { FormContext } from "../../lib/FormContext";
 import {
   book,
   food,
@@ -40,20 +41,19 @@ const navigation = [
   { name: "Contact", href: "/contact", current: false },
 ];
 
-const tag = [
-  { href: "##", tag: "Book", img: book },
-  { href: "##", tag: "Music", img: music },
-  { href: "##", tag: "Food", img: food },
-  { href: "##", tag: "Travel", img: travel },
-  { href: "##", tag: "Nature", img: nature },
-  { href: "##", tag: "Thought", img: thought },
-  { href: "##", tag: "Review", img: review },
-  { href: "##", tag: "Moving Picture", img: movingPicture },
-];
+
 
 const Footer = () => {
+
+      const{tag} = useContext(FormContext)
+
+
+
+
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,10 +113,10 @@ const Footer = () => {
                     <Link
                       id="RouterNavLink"
                       key={index}
-                      href={data?.href}
+                      href={`/categories/${data?.slug?.current}`}
                       className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
-                      {data?.tag}
+                     {data?.title}
                     </Link>
                   ))}
                 </div>
