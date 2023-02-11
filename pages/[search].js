@@ -55,7 +55,6 @@ const index = ({ query }) => {
         `Sorry, the requested "${formValues}" was not found! \n Please check out other available blogs to read`
       );
       setFilteredData(data);
-      console.log("form z", formValues.length);
     }
     
   }, [formValues, data]);

@@ -3,7 +3,6 @@
 import moment from "moment";
 import { groq } from "next-sanity";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { client } from "../../../lib/sanity.client";
@@ -47,13 +46,14 @@ const query = groq`
 } | order(_createAt desc)
 `;
 
-const pageSize = 2;
+const pageSize = 5;
 const index = ({ category }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [categoriesToInclude, setCategoriesToInclude] = useState(category);
   const [currentPage, setCurrentPage] = useState(0);
+  const [message, setMessage] = useState(null);
 
 
   useEffect(() => {
@@ -84,8 +84,15 @@ const index = ({ category }) => {
           )
           .map((post) => post);
 
-        console.log("filtered", filteredData);
-        setData(filteredData);
+          if (filteredData?.length !== 0) {
+            setData(filteredData);
+            setMessage(`We found over ${filteredData?.length} results for "${category}" Categories`);
+          } else {
+            setMessage(
+              `We apologize, but the requested "${category}" category information could not be found. Please feel free to browse our other blogs and categories for more relevant content`
+            );
+            setData(result);
+          }
       } catch (error) {
         setError(error);
       } finally {
@@ -97,19 +104,19 @@ const index = ({ category }) => {
 
   useEffect(() => {
     setCategoriesToInclude(category);
-  }, [category]);
-
+  }, [category, data]);
+/* 
   if (error) {
     return <p>{error.message}</p>;
-  }
+  } */
   if (isLoading) {
     return (
-      <div><Loading></Loading></div>
-      
+      <div>
+        <Loading></Loading>
+      </div>
     );
   }
-  if (!data) return <p>No profile Data</p>;
-
+  // if (!data) return <p>No profile Data</p>;
 
   const paginatedData = data?.slice(
     currentPage * pageSize,
@@ -132,14 +139,16 @@ const index = ({ category }) => {
     <section>
       <Head>
         <title className="text-[#121212] text-[20px] leading-[1.4] font-bold p-0 m-0">
-          Exploring the {category} category
+          {category} category
         </title>
       </Head>
 
-      <section className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white`}>
+      <section
+        className={`${style.blogSection} py-4 px-2 sm:px-3 md:px-5 lg:px-52 bg-white`}
+      >
         <header className="mb-6">
           <p className="text-gray-500 border-l-4 border-gray-500 w-fit italic pl-2 pr-3 py-1 bg-[#f5f6fa] rounded-r">
-          Exploring the "{category}" category
+            {message}
           </p>
         </header>
         <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-6 divide-slate-800 ">
@@ -220,30 +229,30 @@ const index = ({ category }) => {
         </div>
 
         {data.length > pageSize && (
-        <div className="flex justify-center items-center mt-4 gap-4  py-4 px-5 lg:px-52 bg-white">
-          {currentPage !== 0 && (
-            <button
-              onClick={handlePreviousButtonClick}
-              disabled={currentPage === 0}
-              className="px-5 py-[5px] text-sm  font-medium text-[#b70038] border rounded-2xl hover:bg-gray-100"
-            >
-              <span className="pr-[8px] ">&lt;</span> Prev
-            </button>
-          )}
-          <p className="px-5 py-[5px] text-sm font-medium text-gray-700 border rounded-2xl ">
-            Page {currentPage + 1} of {Math.ceil(data.length / pageSize)}
-          </p>
-          {(currentPage + 1) * pageSize < data.length && (
-            <button
-              onClick={handleNextButtonClick}
-              disabled={(currentPage + 1) * pageSize >= data.length}
-              className="px-5 py-[5px] text-sm font-medium text-[#b70038] border rounded-2xl hover:bg-gray-100"
-            >
-              Next <span className="pl-[8px] ">&gt;</span>
-            </button>
-          )}
-        </div>
-      )}
+          <div className="flex justify-center items-center mt-4 gap-4  py-4 px-5 lg:px-52 bg-white">
+            {currentPage !== 0 && (
+              <button
+                onClick={handlePreviousButtonClick}
+                disabled={currentPage === 0}
+                className="px-5 py-[5px] text-sm  font-medium text-[#b70038] border rounded-2xl hover:bg-gray-100"
+              >
+                <span className="pr-[8px] ">&lt;</span> Prev
+              </button>
+            )}
+            <p className="px-5 py-[5px] text-sm font-medium text-gray-700 border rounded-2xl ">
+              Page {currentPage + 1} of {Math.ceil(data.length / pageSize)}
+            </p>
+            {(currentPage + 1) * pageSize < data.length && (
+              <button
+                onClick={handleNextButtonClick}
+                disabled={(currentPage + 1) * pageSize >= data.length}
+                className="px-5 py-[5px] text-sm font-medium text-[#b70038] border rounded-2xl hover:bg-gray-100"
+              >
+                Next <span className="pl-[8px] ">&gt;</span>
+              </button>
+            )}
+          </div>
+        )}
       </section>
     </section>
   );
