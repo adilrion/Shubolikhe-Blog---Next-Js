@@ -17,7 +17,7 @@ const Blogs = ({ data }) => {
 
   return (
     <section>
-      <section className={`${style.blogSection}px-2 sm:px-3 md:px-5  lg:px-52 bg-white`}>
+      <section className={`${style.blogSection} px-3 md:px-5  lg:px-52 bg-white`}>
 
       <div className="flex flex-wrap gap-2">
             {tag?.map((data, index) => (

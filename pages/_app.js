@@ -8,13 +8,17 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>ss</title>
+        <title>Shubolikhe.Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="favicon icon" type="image/x-icon" href="/favicon.ico" />
+
       </Head>
       <FormProvider>
-      <Navigation />
-      <Component {...pageProps} />
-      <Footer />
+        <div className="max-w-screen-2xl">
+          <Navigation />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
       </FormProvider>
     </>
   );

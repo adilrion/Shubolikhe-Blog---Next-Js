@@ -238,7 +238,7 @@ const index = ({ slug }) => {
           <div className="first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
             <BlockContent blocks={blog?.body} />
           </div>
-          <div className="md:flex items-center gap-[5px] mb-6 hidden md:block">
+          <div className="md:flex items-center gap-[5px] mb-6">
             <span className="text-xs font-normal text-[#555555] capitalize">
               categories:
             </span>
@@ -247,7 +247,7 @@ const index = ({ slug }) => {
                 id="RouterNavLink"
                 key={index}
                 href={`/categories/${data?.slug?.current}`}
-                className=" flex gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
+                className=" w-fit flex gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
               >
                 {data?.image && (
                   <img
@@ -262,7 +262,7 @@ const index = ({ slug }) => {
               </Link>
             ))}
           </div>
-          <div className="md:flex items-center gap-[5px] mb-6 hidden md:block">
+          <div className="md:flex items-center gap-[5px] mb-6">
           <SharePost title={blog?.title} description={blog?.title} image={blog?.mainImage}></SharePost>
           </div>
         </div>
