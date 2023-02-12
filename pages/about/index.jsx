@@ -85,9 +85,9 @@ const About = () => {
             </div>
           </div>
           <div className="pt-6 mx-2 xl:mx-40">
-            <p className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
+            <div className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
               <BlockContent blocks={data && data?.[0].bio} />
-            </p>
+            </div>
           </div>
         </div>
       </section>

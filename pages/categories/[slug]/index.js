@@ -45,7 +45,6 @@ const index = ({ category }) => {
       try {
         setIsLoading(true);
         const result = await client.fetch(query);
-        console.log("total", result);
 
         if (!Array.isArray(result)) {
           setError("API did not return an array of data.");
@@ -169,7 +168,7 @@ const index = ({ category }) => {
                           <img
                             src={urlFor(data?.icon).url()}
                             alt={data?.media}
-                            className="w-[15px]"
+                            className="w-[15px] h-[15px] rounded-full"
                           />
                         </Link>
                       ))}

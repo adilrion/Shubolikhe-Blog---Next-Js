@@ -9,7 +9,6 @@ import urlFor from "../../lib/urlFor";
 
 const Tag = () => {
   const { tag, cateIsLoading, error } = useContext(FormContext);
-  console.log(tag);
 
   if (cateIsLoading) {
     return (

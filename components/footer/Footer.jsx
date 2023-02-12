@@ -1,39 +1,7 @@
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
-import {
-  book,
-  food,
-  movingPicture,
-  music,
-  nature,
-  review,
-  thought,
-  travel,
-} from "../../pages/assest";
-const social = [
-  {
-    name: "facebook",
-    href: "#",
-    icon: "https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png",
-  },
-  {
-    name: "linkedin",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/402/997/png-transparent-linkedin-logo-computer-icons-facebook-user-profile-facebook-blue-angle-text.png",
-  },
-  {
-    name: "pinterest",
-    href: "#",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png",
-  },
-  {
-    name: "twitter",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png",
-  },
-];
-
+import urlFor from "../../lib/urlFor";
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Blog", href: "/blogs", current: false },
@@ -41,47 +9,40 @@ const navigation = [
   { name: "Contact", href: "/contact", current: false },
 ];
 
+// https://script.google.com/macros/s/AKfycbyWvvkIw5bR2Hs5urqQm6zI7cu2OeULPs_VHS8aiINhH0aAvCoYwl7dAw6gIouAi4H8/exec
 
+// AKfycbyWvvkIw5bR2Hs5urqQm6zI7cu2OeULPs_VHS8aiINhH0aAvCoYwl7dAw6gIouAi4H8
 
 const Footer = () => {
-
-      const{tag} = useContext(FormContext)
-
-
-
+  const { tag, socialMedia } = useContext(FormContext);
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbyWvvkIw5bR2Hs5urqQm6zI7cu2OeULPs_VHS8aiINhH0aAvCoYwl7dAw6gIouAi4H8/exec";
+    const formData = new FormData();
+    formData.append("email", email);
 
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzaK6QGb64aW5YUrs9SdR7y5QSlHIA-d_Yie1hDXhc3ruL5sgBNS8wJTXrMuX1EBcGKUw/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: email,
-        }
-      );
-
-      if (response.ok) {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+      });
+      const response = await res.json();
+      if (response.result === "success") {
         alert("You are subscribed!");
         setMessage("You are subscribed!");
         setEmail("");
-      } else {
-        throw new Error("Failed to subscribe");
       }
     } catch (error) {
-      alert("An error occurred while subscribing. Please try again later.");
-      console.error(error);
-    } finally {
-      // setIsSubmitting(false);
+      if (error.message) {
+        setMessage("An error occurred while subscribing. Please try again later.");
+        alert("An error occurred while subscribing. Please try again later.");
+      }
     }
   };
 
@@ -116,7 +77,7 @@ const Footer = () => {
                       href={`/categories/${data?.slug?.current}`}
                       className=" hover:text-[#b70038]  text-[15px] text-[#121212d8]"
                     >
-                     {data?.title}
+                      {data?.title}
                     </Link>
                   ))}
                 </div>
@@ -164,9 +125,9 @@ const Footer = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                       className="bg-gray-50 border text-gray-900 text-sm rounded block w-full pl-8 p-2  border-[#b70038] placeholder-gray-400  focus:outline-none"
                       placeholder="shubolikhe@blog.com"
-                      required
                     />
                   </div>
                   <button
@@ -196,17 +157,17 @@ const Footer = () => {
           </span>
 
           <div className="flex gap-2">
-            {social.map((data, index) => (
+            {socialMedia?.slice(0, 5)?.map((data, index) => (
               <Link
-                id="RouterNavLink"
                 key={index}
-                href={data.href}
+                href={data?.slug.current}
+                target="_blank"
                 className=""
               >
                 <img
-                  className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
-                  src={data?.icon}
-                  alt={data.name}
+                  src={urlFor(data?.icon).url()}
+                  alt={data?.media}
+                  className="w-[30px] h-[30px] object-cover  rounded-full  shadow "
                 />
               </Link>
             ))}

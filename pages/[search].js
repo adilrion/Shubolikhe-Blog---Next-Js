@@ -49,7 +49,6 @@ const index = ({ query }) => {
     if (filter?.length !== 0) {
       setFilteredData(filter);
       setMessage(`We found over ${filter?.length} results for "${formValues}"`);
-      console.log("form f", formValues.length);
     } else {
       setMessage(
         `Sorry, the requested "${formValues}" was not found! \n Please check out other available blogs to read`
@@ -58,7 +57,6 @@ const index = ({ query }) => {
     }
     
   }, [formValues, data]);
-  console.log(error);
   if (error) {
       return <div>error found</div>;
     }

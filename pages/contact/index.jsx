@@ -1,45 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
 import BlockContent from "@sanity/block-content-to-react";
+import Link from "next/link";
 
-import React, { useEffect, useState } from "react";
-import { contact } from "../assest/index";
 import emailjs from "emailjs-com";
 import { groq } from "next-sanity";
-import { client } from "../../lib/sanity.client";
-import urlFor from "../../lib/urlFor";
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FormContext } from "../../lib/FormContext";
+import { client } from "../../lib/sanity.client";
 import { SectionLoading } from "../../lib/sectionLoading";
+import urlFor from "../../lib/urlFor";
 
-const social = [
-  {
-    name: "facebook",
-    href: "#",
-    icon: "https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png",
-  },
-  {
-    name: "linkedin",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/402/997/png-transparent-linkedin-logo-computer-icons-facebook-user-profile-facebook-blue-angle-text.png",
-  },
-  {
-    name: "pinterest",
-    href: "#",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png",
-  },
-  {
-    name: "twitter",
-    href: "#",
-    icon: "https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png",
-  },
-];
-
-const query = groq`
-*[_type == "contactMe"]`;
 const Contact = () => {
+  const query = groq`
+*[_type == "contactMe"]`;
   const { socialMedia } = useContext(FormContext);
-  console.log("🚀 ~ file: index.jsx:42 ~ Contact ~ socialMedia", socialMedia);
   // Contact Section data Fetch
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -90,18 +63,16 @@ const Contact = () => {
       alert(
         "An error occurred while sending your message. Please try again later."
       );
-      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-
   if (isLoading) {
     return (
-     <div>
-      <SectionLoading/>
-     </div>
+      <div>
+        <SectionLoading />
+      </div>
     );
   }
 
@@ -136,8 +107,8 @@ const Contact = () => {
                   >
                     {data?.icon && (
                       <img
-                      className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
-                      src={urlFor(data?.icon).url()}
+                        className="w-[30px] h-[30px] aspect-square rounded-full shadow hover: "
+                        src={urlFor(data?.icon).url()}
                         alt={data?.media}
                         width="100"
                         height="100"
@@ -150,9 +121,9 @@ const Contact = () => {
           </div>
           <div className="pt-6 mx-2 xl:mx-40">
             <div>
-              <p className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
+              <div className=" first-letter:text-5xl first-letter:font-bold first-letter:text-[#b70038] first-letter:mr-3 first-letter:float-left first-letter:leading-[1.1] text-[#121212] text-[17px]">
                 <BlockContent blocks={data && data?.[0].bio} />
-              </p>
+              </div>
             </div>
 
             {showSuccessMessage ? (

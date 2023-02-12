@@ -12,7 +12,6 @@ import style from "./Blog.module.css";
 const Blogs = ({ data }) => {
 
   const { socialMedia, tag } = useContext(FormContext);
-  console.log("🚀 ~ file: blogs.jsx:36 ~ Blogs ~ socialMedia", socialMedia)
 
  
 
@@ -78,7 +77,7 @@ const Blogs = ({ data }) => {
                           <img
                             src={urlFor(data?.icon).url()}
                             alt={data?.media}
-                            className="w-[15px]"
+                            className="w-[15px] h-[15px] rounded-full"
                           />
                         </Link>
                       ))}
