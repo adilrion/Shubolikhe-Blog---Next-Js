@@ -3,14 +3,13 @@ import BlockContent from "@sanity/block-content-to-react";
 import moment from "moment";
 import { groq } from "next-sanity";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useContext } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
+import SharePost from "../../../components/sharePost";
 
 const query = groq`*[_type == "post" && slug.current == $slug] {
   title,
@@ -262,6 +261,9 @@ const index = ({ slug }) => {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="md:flex items-center gap-[5px] mb-6 hidden md:block">
+          <SharePost title={blog?.title} description={blog?.title} image={blog?.mainImage}></SharePost>
           </div>
         </div>
 
