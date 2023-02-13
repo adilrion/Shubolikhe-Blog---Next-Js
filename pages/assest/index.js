@@ -1,10 +1,11 @@
-import facebook from "./Images/social/facebook.png";
-import twitter from "./Images/social/twitter.png";
-import pinterest from "./Images/social/pinterest.png";
-import linkedin from "./Images/social/linkedin.png";
-import mail from "./Images/social/s.mail.png";
-import copy from "./Images/social/s.copy.png";
-import instagram from "./Images/social/instagram.png";
+import facebook from "./facebook.png";
+import instagram from "./instagram.png";
+import linkedin from "./linkedin.png";
+import pinterest from "./pinterest.png";
+import copy from "./s.copy.png";
+import mail from "./s.mail.png";
+import twitter from "./twitter.png";
 
 
-export { facebook, twitter, pinterest, linkedin, mail, copy, instagram};
+export { facebook, twitter, pinterest, linkedin, mail, copy, instagram };
+

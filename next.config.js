@@ -3,7 +3,7 @@
 module.exports = {
   reactStrictMode: true,
  experimental:{
-  appDir: false,
+  appDir: true,
  }, 
  images:{
   domains: ["links.papareact.com", "cdn.sanity.io"]
