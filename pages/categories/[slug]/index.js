@@ -9,7 +9,7 @@ import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
 import style from "../../blogs/Blog.module.css";
-import ClientSideRoute from "../../clientSideRoute";
+import ClientSideRoute from "../../../lib/ClientSideRoute";
 import Loading from "../../loading";
 
 

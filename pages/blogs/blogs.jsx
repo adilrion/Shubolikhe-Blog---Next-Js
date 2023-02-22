@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
 import urlFor from "../../lib/urlFor";
-import ClientSideRoute from "../clientSideRoute";
+import ClientSideRoute from "../../lib/ClientSideRoute";
 import style from "./Blog.module.css";
 
 
