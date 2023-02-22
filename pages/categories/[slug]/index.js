@@ -1,4 +1,3 @@
-"client side";
 
 import moment from "moment";
 import { groq } from "next-sanity";
@@ -28,7 +27,7 @@ const query = groq`
 `;
 
 const pageSize = 5;
-const index = ({ category }) => {
+export default function Index ({ category }){
 
 
   const {socialMedia} = useContext(FormContext);
@@ -238,8 +237,8 @@ const index = ({ category }) => {
     </section>
   );
 };
-index.getInitialProps = async ({ query: { slug } }) => {
+Index.getInitialProps = async ({ query: { slug } }) => {
   return { category: slug };
 };
 
-export default index;
+

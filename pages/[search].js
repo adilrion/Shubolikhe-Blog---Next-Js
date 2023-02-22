@@ -6,7 +6,7 @@ import { FormContext } from "../lib/FormContext";
 import Blogs from "./blogs/blogs";
 import Loading from "./loading";
 
-const index = ({ query }) => {
+export default function Index  ({ query }) {
   const {
         formValues,
         setFormValues,
@@ -109,8 +109,8 @@ const index = ({ query }) => {
   );
 };
 
-index.getInitialProps = async ({ query: { query } }) => {
+Index.getInitialProps = async ({ query: { query } }) => {
   return { query };
 };
 
-export default index;
+

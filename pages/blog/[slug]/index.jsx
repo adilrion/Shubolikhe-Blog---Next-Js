@@ -1,4 +1,3 @@
-"client site";
 import BlockContent from "@sanity/block-content-to-react";
 import moment from "moment";
 import { groq } from "next-sanity";
@@ -34,7 +33,7 @@ const recentQuery = groq`*[_type == "post"] | order(publishedAt desc) [0...10] {
     } 
 }`;
 
-const index = ({ slug }) => {
+export default function Index ({ slug }) {
   const { tag, socialMedia } = useContext(FormContext);
   const [blog, setBlog] = useState({});
   const [recentBlogs, setRecentBlogs] = useState([]);
@@ -350,8 +349,8 @@ const index = ({ slug }) => {
   );
 };
 
-index.getInitialProps = async ({ query: { slug } }) => {
+Index.getInitialProps = async ({ query: { slug } }) => {
   return { slug };
 };
 
-export default index;
+

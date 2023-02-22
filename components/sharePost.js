@@ -5,7 +5,7 @@ import {
   mail,
   pinterest,
   twitter
-} from "../pages/assest";
+} from "./assest";
 
 const SharePost = ({ title, description, image }) => {
   const router = useRouter();
