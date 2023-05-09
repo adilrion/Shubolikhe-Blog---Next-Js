@@ -1,6 +1,5 @@
 import BlockContent from "@sanity/block-content-to-react";
 import Link from "next/link";
-
 import emailjs from "emailjs-com";
 import { groq } from "next-sanity";
 import React, { useContext, useEffect, useState } from "react";

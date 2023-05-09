@@ -1,10 +1,13 @@
 import Image from "next/image.js";
 import { useRouter } from "next/router";
 import {
-  copy, facebook, instagram, linkedin,
+  copy,
+  facebook,
+  instagram,
+  linkedin,
   mail,
   pinterest,
-  twitter
+  twitter,
 } from "./assest";
 
 const SharePost = ({ title, description, image }) => {
@@ -33,7 +36,9 @@ const SharePost = ({ title, description, image }) => {
 
   return (
     <div className="share-post">
-      <h3 className="text-gray-600 pb-2 border-b mb-4 w-full">Share this post:</h3>
+      <h3 className="text-gray-600 pb-2 border-b mb-4 w-full">
+        Share this post:
+      </h3>
       <ul className="flex gap-5 flex-wrap">
         <li className="">
           <a
@@ -42,7 +47,11 @@ const SharePost = ({ title, description, image }) => {
             rel="noopener noreferrer"
             className=""
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={facebook} alt="Share on facebook" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={facebook}
+              alt="Share on facebook"
+            />
           </a>
         </li>
         <li className="">
@@ -51,7 +60,11 @@ const SharePost = ({ title, description, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={twitter} alt="Share on Twitter" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={twitter}
+              alt="Share on Twitter"
+            />
           </a>
         </li>
         <li className="">
@@ -60,7 +73,11 @@ const SharePost = ({ title, description, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={linkedin} alt="Share on LinkedIn" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={linkedin}
+              alt="Share on LinkedIn"
+            />
           </a>
         </li>
         <li className="">
@@ -69,7 +86,11 @@ const SharePost = ({ title, description, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={pinterest} alt="Share on Pinterest" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={pinterest}
+              alt="Share on Pinterest"
+            />
           </a>
         </li>
         <li className="">
@@ -78,7 +99,11 @@ const SharePost = ({ title, description, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={instagram} alt="Share on Instagram" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={instagram}
+              alt="Share on Instagram"
+            />
           </a>
         </li>
         <li className="">
@@ -87,19 +112,27 @@ const SharePost = ({ title, description, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="w-14 h-14 shadow p-2 rounded   object-cover border" src={mail} alt="Share via Mail" />
+            <Image
+              className="w-14 h-14 shadow p-2 rounded   object-cover border"
+              src={mail}
+              alt="Share via Mail"
+            />
           </a>
         </li>
         <li>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(url);
-            alert("URL copied to clipboard");
-          }}
-        >
-          <Image className="w-14 h-14 shadow p-2 rounded object-cover border" src={copy} alt="Copy URL" />
-        </button>
-      </li>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(url);
+              alert("URL copied to clipboard");
+            }}
+          >
+            <Image
+              className="w-14 h-14 shadow p-2 rounded object-cover border"
+              src={copy}
+              alt="Copy URL"
+            />
+          </button>
+        </li>
       </ul>
     </div>
   );

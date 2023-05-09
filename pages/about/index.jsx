@@ -35,9 +35,9 @@ const About = () => {
 
   if (isLoading) {
     return (
-     <div>
-      <SectionLoading/>
-     </div>
+      <div>
+        <SectionLoading />
+      </div>
     );
   }
 

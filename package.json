@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export":"next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -18,8 +17,6 @@
     "@sanity/image-url": "^1.0.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "emailjs-com": "^3.2.0",
-    "eslint": "8.29.0",
-    "eslint-config-next": "13.0.6",
     "moment": "^2.29.4",
     "next": "13.0.6",
     "next-sanity": "^3.1.3",

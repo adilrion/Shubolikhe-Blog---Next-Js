@@ -3,7 +3,13 @@ import moment from "moment";
 import { groq } from "next-sanity";
 import Head from "next/head";
 import Link from "next/link";
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
@@ -33,7 +39,7 @@ const recentQuery = groq`*[_type == "post"] | order(publishedAt desc) [0...10] {
     } 
 }`;
 
-export default function Index ({ slug }) {
+export default function Index({ slug }) {
   const { tag, socialMedia } = useContext(FormContext);
   const [blog, setBlog] = useState({});
   const [recentBlogs, setRecentBlogs] = useState([]);
@@ -210,16 +216,20 @@ export default function Index ({ slug }) {
               </span>
 
               <div className="flex gap-2">
-              {socialMedia?.map((data, index) => (
-                        <Link key={index} href={data?.slug.current}
-                        target="_blank" className="">
-                          <img
-                            src={urlFor(data?.icon).url()}
-                            alt={data?.media}
-                            className="w-[30px] h-[30px] rounded-full"
-                          />
-                        </Link>
-                      ))}
+                {socialMedia?.map((data, index) => (
+                  <Link
+                    key={index}
+                    href={data?.slug.current}
+                    target="_blank"
+                    className=""
+                  >
+                    <img
+                      src={urlFor(data?.icon).url()}
+                      alt={data?.media}
+                      className="w-[30px] h-[30px] rounded-full"
+                    />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -262,7 +272,11 @@ export default function Index ({ slug }) {
             ))}
           </div>
           <div className="md:flex items-center gap-[5px] mb-6">
-          <SharePost title={blog?.title} description={blog?.title} image={blog?.mainImage}></SharePost>
+            <SharePost
+              title={blog?.title}
+              description={blog?.title}
+              image={blog?.mainImage}
+            ></SharePost>
           </div>
         </div>
 
@@ -318,39 +332,37 @@ export default function Index ({ slug }) {
           </div>
           <div>
             <p className="text-gray-500 border-l-4 border-gray-500 italic pl-2 pr-3 py-1 mb-4 bg-[#f5f6fa] rounded-r">
-            Category
+              Category
             </p>
 
             <div className="flex flex-wrap gap-2">
-            {tag?.map((data, index) => (
-              <Link
-                id="RouterNavLink"
-                key={index}
-                href={`/categories/${data?.slug?.current}`}
-                className="flex  gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
-              >
-                {data?.image && (
-                  <img
-                    className="object-cover w-[20px] h-[20px] justify-center rounded-full"
-                    src={urlFor(data?.image).url()}
-                    alt={data?.title}
-                  />
-                )}
-                <div className="text-xs font-normal text-[#555555]">
-                  {data?.title}
-                </div>
-              </Link>
-            ))}
+              {tag?.map((data, index) => (
+                <Link
+                  id="RouterNavLink"
+                  key={index}
+                  href={`/categories/${data?.slug?.current}`}
+                  className="flex  gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"
+                >
+                  {data?.image && (
+                    <img
+                      className="object-cover w-[20px] h-[20px] justify-center rounded-full"
+                      src={urlFor(data?.image).url()}
+                      alt={data?.title}
+                    />
+                  )}
+                  <div className="text-xs font-normal text-[#555555]">
+                    {data?.title}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 Index.getInitialProps = async ({ query: { slug } }) => {
   return { slug };
 };
-
-

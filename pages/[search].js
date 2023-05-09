@@ -6,25 +6,24 @@ import { FormContext } from "../lib/FormContext";
 import Blogs from "./blogs/blogs";
 import Loading from "./loading";
 
-export default function Index  ({ query }) {
+export default function Index({ query }) {
   const {
-        formValues,
-        setFormValues,
-        message,
-        setMessage,
-        data,
-        filteredData,
-        setFilteredData,
-        error,
-        isLoading,
-        currentPage,
-        setCurrentPage,
-        handleNextButtonClick,
-        handlePreviousButtonClick,
-        paginatedData,
-        pageSize
+    formValues,
+    setFormValues,
+    message,
+    setMessage,
+    data,
+    filteredData,
+    setFilteredData,
+    error,
+    isLoading,
+    currentPage,
+    setCurrentPage,
+    handleNextButtonClick,
+    handlePreviousButtonClick,
+    paginatedData,
+    pageSize,
   } = useContext(FormContext);
-
 
   useEffect(() => {
     setCurrentPage(0);
@@ -55,15 +54,16 @@ export default function Index  ({ query }) {
       );
       setFilteredData(data);
     }
-    
   }, [formValues, data]);
   if (error) {
-      return <div>error found</div>;
-    }
+    return <div>error found</div>;
+  }
 
   if (isLoading) {
     return (
-      <div><Loading></Loading></div>
+      <div>
+        <Loading></Loading>
+      </div>
     );
   }
 
@@ -107,10 +107,8 @@ export default function Index  ({ query }) {
       )}
     </>
   );
-};
+}
 
 Index.getInitialProps = async ({ query: { query } }) => {
   return { query };
 };
-
-

@@ -49,41 +49,39 @@ export default function Navigation() {
                 </div>
               </div>
 
-{/* laptop menu */}
+              {/* laptop menu */}
               <div>
-              <h1 className="text-3xl md:text-5xl md:pb-5 py-2 text-center font-light text-[#b70038] tracking-wide  hidden md:block">
+                <h1 className="text-3xl md:text-5xl md:pb-5 py-2 text-center font-light text-[#b70038] tracking-wide  hidden md:block">
                   Shubolikhe
                 </h1>
-              <div className="w-full md:flex justify-between items-center hidden md:block">
-                
-                <div className="flex justify-between w-full items-center">
-                  <div className="hidden sm:ml-6 md:ml-0 sm:block ">
-                    <div className="flex space-x-4">
-                      {navigation.map((item) => (
-                        <Link
-                          id="RouterNavLink"
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? " text-[#222] uppercase"
-                              : "  hover:text-[#b70038] uppercase",
-                            "px-3 first:pl-0 py-2 rounded-md text-md font-medium uppercase"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+                <div className="w-full md:flex justify-between items-center hidden md:block">
+                  <div className="flex justify-between w-full items-center">
+                    <div className="hidden sm:ml-6 md:ml-0 sm:block ">
+                      <div className="flex space-x-4">
+                        {navigation.map((item) => (
+                          <Link
+                            id="RouterNavLink"
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              item.current
+                                ? " text-[#222] uppercase"
+                                : "  hover:text-[#b70038] uppercase",
+                              "px-3 first:pl-0 py-2 rounded-md text-md font-medium uppercase"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  
+                  <div className="">
+                    {" "}
+                    <SearchBar></SearchBar>
+                  </div>
                 </div>
-                <div className="">
-                  {" "}
-                  <SearchBar></SearchBar>
-                </div>
-              </div>
               </div>
             </div>
           </div>
@@ -102,10 +100,7 @@ export default function Navigation() {
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
-                  <Disclosure.Button>
-                  
-                  {item.name}
-                  </Disclosure.Button>
+                  <Disclosure.Button>{item.name}</Disclosure.Button>
                 </Link>
               ))}
             </div>

@@ -19,7 +19,6 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const scriptURL =
@@ -40,7 +39,9 @@ const Footer = () => {
       }
     } catch (error) {
       if (error.message) {
-        setMessage("An error occurred while subscribing. Please try again later.");
+        setMessage(
+          "An error occurred while subscribing. Please try again later."
+        );
         alert("An error occurred while subscribing. Please try again later.");
       }
     }

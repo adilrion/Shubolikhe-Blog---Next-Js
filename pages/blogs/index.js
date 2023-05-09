@@ -17,10 +17,11 @@ const BlogPages = () => {
     pageSize,
   } = useContext(FormContext);
 
-  
   if (isLoading) {
     return (
-      <div><Loading></Loading></div>
+      <div>
+        <Loading></Loading>
+      </div>
     );
   }
 
