@@ -1,5 +1,4 @@
 import moment from "moment/moment";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
@@ -88,7 +87,7 @@ const Blogs = ({ data }) => {
                       {blog.title}
                     </Link>
                     <div className="flex gap-x-2 pt-1">
-                      {blog?.categories?.slice(0, 3).map((data, index) => (
+                      {blog?.categories?.slice(0, 3)?.map((data, index) => (
                         <Link
                           key={index}
                           href={`/categories/${data?.slug?.current}`}

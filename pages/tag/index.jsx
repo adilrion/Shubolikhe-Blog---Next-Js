@@ -1,14 +1,12 @@
-import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { FormContext } from "../../lib/FormContext";
-import { client } from "../../lib/sanity.client";
 import urlFor from "../../lib/urlFor";
 
 const Tag = () => {
-  const { tag, cateIsLoading, error } = useContext(FormContext);
+  const { tag, cateIsLoading} = useContext(FormContext);
 
   if (cateIsLoading) {
     return (
@@ -19,7 +17,7 @@ const Tag = () => {
         </p>
       </header>
       <div className="flex flex-wrap gap-5 mt-4">
-        {[{},{},{},{},{},{},{},{}].map((data, index) => (
+        {[{},{},{},{},{},{},{},{}]?.map((data, index) => (
           <div
             key={index}
             className=" shadow bg-gray-100 w-[250px] h-[250px] rounded grow hover:bg-[#f5f6fa] flex flex-col justify-center items-center gap-5 animate-pulse"

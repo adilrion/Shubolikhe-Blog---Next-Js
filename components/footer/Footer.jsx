@@ -9,9 +9,7 @@ const navigation = [
   { name: "Contact", href: "/contact", current: false },
 ];
 
-// https://script.google.com/macros/s/AKfycbyWvvkIw5bR2Hs5urqQm6zI7cu2OeULPs_VHS8aiINhH0aAvCoYwl7dAw6gIouAi4H8/exec
 
-// AKfycbyWvvkIw5bR2Hs5urqQm6zI7cu2OeULPs_VHS8aiINhH0aAvCoYwl7dAw6gIouAi4H8
 
 const Footer = () => {
   const { tag, socialMedia } = useContext(FormContext);

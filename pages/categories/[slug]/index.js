@@ -63,8 +63,7 @@ export default function Index ({ category }){
                   category.slug.current &&
                   categoriesToInclude.includes(category.slug.current)
               )
-          )
-          .map((post) => post);
+          )?.map((post) => post);
 
           if (filteredData?.length !== 0) {
             setData(filteredData);

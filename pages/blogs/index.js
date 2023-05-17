@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { FormContext } from "../../lib/FormContext";
 import Loading from "../loading";
 import Blogs from "./blogs";
@@ -8,7 +8,6 @@ const BlogPages = () => {
     message,
     data,
     filteredData,
-    error,
     isLoading,
     currentPage,
     handleNextButtonClick,
@@ -25,7 +24,6 @@ const BlogPages = () => {
     );
   }
 
-  // if (!filteredData) return <p>No profile Data</p>;
 
   return (
     <>

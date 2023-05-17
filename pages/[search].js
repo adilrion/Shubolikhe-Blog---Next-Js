@@ -9,7 +9,6 @@ import Loading from "./loading";
 export default function Index({ query }) {
   const {
     formValues,
-    setFormValues,
     message,
     setMessage,
     data,
@@ -41,8 +40,7 @@ export default function Index({ query }) {
             ?.toLowerCase()
             .includes(formValues.toLowerCase())) ||
         (post?.categories &&
-          post?.categories
-            .map((category) => category?.title?.toLowerCase())
+          post?.categories?.map((category) => category?.title?.toLowerCase())
             .some((title) => title?.includes(formValues.toLowerCase())))
     );
     if (filter?.length !== 0) {

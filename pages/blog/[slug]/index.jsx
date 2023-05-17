@@ -1,8 +1,4 @@
-import BlockContent from "@sanity/block-content-to-react";
-import moment from "moment";
-import { groq } from "next-sanity";
-import Head from "next/head";
-import Link from "next/link";
+
 import React, {
   useCallback,
   useContext,
@@ -10,6 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
+import BlockContent from "@sanity/block-content-to-react";
+import moment from "moment";
+import { groq } from "next-sanity";
+import Head from "next/head";
+import Link from "next/link";
 import { FormContext } from "../../../lib/FormContext";
 import { client } from "../../../lib/sanity.client";
 import urlFor from "../../../lib/urlFor";
@@ -119,7 +120,7 @@ export default function Index({ slug }) {
           </div>
           <div className="md:flex items-center gap-[5px] hidden md:block">
             <div className="h-[20px] p-1 bg-gray-200 rounded-full  w-32"></div>
-            {[{}, {}, {}, {}, {}].map((data, index) => (
+            {[{}, {}, {}, {}, {}]?.map((data, index) => (
               <div
                 key={index}
                 className=" flex gap-1 justify-center items-center  p-1 px-[6px] border rounded-2xl"

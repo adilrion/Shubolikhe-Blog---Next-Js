@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navigation from "../components/navbar/navigation";
 import About from "./about";
 import Blogs from './blogs';
 import Tag from "./tag";

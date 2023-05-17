@@ -58,7 +58,7 @@ export default function Navigation() {
                   <div className="flex justify-between w-full items-center">
                     <div className="hidden sm:ml-6 md:ml-0 sm:block ">
                       <div className="flex space-x-4">
-                        {navigation.map((item) => (
+                        {navigation?.map((item) => (
                           <Link
                             id="RouterNavLink"
                             key={item.name}
@@ -88,7 +88,7 @@ export default function Navigation() {
 
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
+              {navigation?.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
