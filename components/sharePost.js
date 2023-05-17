@@ -12,7 +12,7 @@ import {
 
 const SharePost = ({ title, description, image }) => {
   const router = useRouter();
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL || "https://shubolikhe-blog-next-js.vercel.app/"}${router.asPath}`;
+  const url = `https://shubolikhe-blog-next-js.vercel.app/${router.asPath}`;
   // const url = encodeURIComponent(decodedUrl);
 
   const generateShareURL = (socialMedia) => {
